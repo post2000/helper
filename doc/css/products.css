@@ -69,6 +69,9 @@
 	color:red;
 	display:none;
 }
+#oneblankdiv{
+	height:4em;
+}
 .getguaranteediv{
 	width:10em;
 	margin:auto;

@@ -33,15 +33,37 @@
 				var f_additionalcoverage=0;
 				
 			$.mobile.defaultPageTransition = "none";
-			$("#cover").click(function(){
-				$.mobile.changePage("#main");
+			//$("#cover").click(function(){
+			//	$.mobile.changePage("#main");
+			//});
+			$("#exitprogram").click(function(){
+				window.close();
+				//navigator.app.exitApp(); //navigator.app.exitApp();
 			});
 			$("#premium").mouseup(function(){
+				//alert("mouseup" +$("#premium").val());
+				$("#premium").val(5000); //set the value for apple bug(there ,the input wouldn't show effect if not del all number first.
 				$("#premium").select();
-				//alert("mouseup");
-			});			
+				showBlankDiv();				
+			});	
+			function showBlankDiv(){
+				//used for the premium input,so it would not be cover by the soft keyboard
+				var h=$(window).height();
+				//h=h+1; //just for break point
+				$("#blankdiv").height(0.4*h); //raise the premium input in window
+				var scroll_offset = $("#premium").offset(); //得到premium的offset，包含两个值，top和left
+				$("body,html").animate({
+					scrollTop:scroll_offset.top //让body的scrollTop等于pos的top，就实现了滚动
+				},0);
+			}
+			function hideBlankDiv(){
+				var h=$(window).height();
+				//h=h+1;  //just for break point
+				$("#blankdiv").height(0); //fall back the premium input in window
+				$("body,html").animate({scrollTop:0	},0);
+			}
 			$("#premium").blur(function(){
-				premiumOK();			
+				premiumOK();
 			});
 			function premiumOK(){ //value must be  integer multiple of 1000
 				var premium=$("#premium").val()*1;
@@ -52,6 +74,7 @@
 				}
 				else{
 					$(".premiumalert").hide();
+					hideBlankDiv();
 					return(true);
 				}
 			}
@@ -139,11 +162,6 @@
 	</script>
 </head>
 <body>
-<!-- page cover-->
-    <div data-role="page" id="cover">
-           <img src="img/cover.png" />
-    </div><!-- /end of page cover -->
-<!--page main-->
     <div data-role="page" id="main"  data-theme="c">
         <div data-role="header" data-theme="c" data-position="fixed" class="header " > 
              <div data-role="controlgroup" data-type="horizontal"  class="headerbuttons ui-controlgroup-controls " data-corners="false">
@@ -151,9 +169,10 @@
                 	<a href="#" data-role="button" ><span class="ui-btn-text headertext">富富余</span></a>
                 	<a href="#" data-role="button" ><span class="ui-btn-text headertext">绵绵寿</span></a>
                 	<a href="#" data-role="button" ><span class="ui-btn-text headertext">年年好</span></a>
-                	<a href="#cover" data-role="button" ><span class="ui-btn-text headertext">其 它</span></a>
+                	<a href="#" data-role="button"  id="exitprogram" ><span class="ui-btn-text headertext">退  出</span></a>
             </div>
-        </div><!-- /header -->    
+
+        </div><!-- /header --> 
         <div data-role="content" >
             <div class="ui-grid-a hotproducts" >
             	<div class="ui-block-a"><a href="#nianbinfo"><img src="img/nnh.png" /><br/>年B重疾保障计划 </a> </div>
@@ -201,7 +220,9 @@
                     <span class="premiumalert">本保险产品每份保费1000元，请输入大于1000且为1000整倍数的数值！</span><br/><hr/>
 		</div> 
         <div class="ui-block-a getguaranteediv"><button  data-role="button" id="getguarantee">计算保险利益</button></div><br/><br/>
-    </div><br/><br/><br/><br/><br/><br/><br/><br/>
+    </div>
+    <div id="oneblankdiv"></div>
+    <div id="blankdiv"></div>
     <div data-role="footer" class="footer">
     	<div class="footertext">年年好保你好，重疾保障程度高，生存金早早领，复利收益乐陶陶！</div>
     </div>
