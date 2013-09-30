@@ -73,14 +73,12 @@
 	height:4em;
 }
 .getguaranteediv{
-	width:10em;
-	margin:auto;
-	padding-left:4em;
-	font-size:2em;
+	width:100%;
 }
 #getguarantee{
-	font-size:2em;
-	color:red;
+	width:5em;
+	font-size:3em;
+	margin:auto;
 }
 .title{
 	color:red;

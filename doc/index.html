@@ -42,9 +42,9 @@
 			});
 			$("#premium").mouseup(function(){
 				//alert("mouseup" +$("#premium").val());
-				$("#premium").val(5000); //set the value for apple bug(there ,the input wouldn't show effect if not del all number first.
+				//$("#premium").val(5000); //set the value for apple bug(there ,the input wouldn't show effect if not del all number first.
 				$("#premium").select();
-				showBlankDiv();				
+				showBlankDiv();	
 			});	
 			function showBlankDiv(){
 				//used for the premium input,so it would not be cover by the soft keyboard
@@ -169,7 +169,7 @@
                 	<a href="#" data-role="button" ><span class="ui-btn-text headertext">富富余</span></a>
                 	<a href="#" data-role="button" ><span class="ui-btn-text headertext">绵绵寿</span></a>
                 	<a href="#" data-role="button" ><span class="ui-btn-text headertext">年年好</span></a>
-                	<a href="#" data-role="button"  id="exitprogram" ><span class="ui-btn-text headertext">退  出</span></a>
+                	<a href="#" data-role="button"  id="exitprogram" ><span class="ui-btn-text headertext">其  它</span></a>
             </div>
 
         </div><!-- /header --> 
@@ -219,7 +219,7 @@
                     <input id="premium" type="number" data-mini="true" value="1000" min="1000" step="1000"/>
                     <span class="premiumalert">本保险产品每份保费1000元，请输入大于1000且为1000整倍数的数值！</span><br/><hr/>
 		</div> 
-        <div class="ui-block-a getguaranteediv"><button  data-role="button" id="getguarantee">计算保险利益</button></div><br/><br/>
+        <div class="ui-block-a getguaranteediv"><div  data-role="button" id="getguarantee">计算保险利益</div></div><br/><br/>
     </div>
     <div id="oneblankdiv"></div>
     <div id="blankdiv"></div>
