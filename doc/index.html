@@ -20,54 +20,84 @@
 			var arr_mainCoverage5y=new Array(5315,5315,5315,5315,5315,5315,5315,5315,5315,5315,5315,5315,5315,5315,5315,5315,5315,5315,5315,5315,5315,5315,5315,5315,5315,5315,5315,5315,5314,5314,5314,5314,5314,5314,5314,5314,5314,5314,5314,5314,5313,5313,5313,5313,5313,5313,5312,5312,5312,5311,5311,5311,5310,5310,5309,5308);
 			var arr_additionalCoverageMale5y=new Array(2861,3226,3584,3945,4268,4520,4699,4762,4680,4616,4504,4358,4190,4032,3897,3780,3673,3586,3466,3309,3163,3028,2898,2766,2633,2501,2365,2227,2089,1952,1814,1724,1629,1532,1433,1335,1239,1146,1058,976,892,809,735,670,613,562,517,477,441,408,378,351,326,303,282,263);
 			var arr_additionalCoverageFemale5y=new Array(3498,3889,4227,4506,4697,4828,4885,4854,4770,4809,4823,4826,4836,4853,4877,4886,4873,4819,4629,4328,4021,3734,3445,3164,2889,2628,2390,2179,1981,1806,1646,1568,1495,1427,1366,1310,1245,1188,1137,1091,1030,957,891,831,776,728,686,646,608,572,537,505,475,445,416,388);
-		$(document).on("pageinit", function() {			
-			 //age:0~55,-1 for not set,sex:1 for male,years:3 or 5,premium per year
-				//alert("getguarantee");
-				var i_age=25;
-				var i_sex=0;
-				var i_years=5;
-				var i_premium=5000;
-				var f_mainpremium=0;
-				var f_additionalpremium=0;
-				var f_maincoverage=0;
-				var f_additionalcoverage=0;
-				
-			$.mobile.defaultPageTransition = "none";
-			//$("#cover").click(function(){
-			//	$.mobile.changePage("#main");
-			//});
-			$("#exitprogram").click(function(){
-				window.close();
-				//navigator.app.exitApp(); //navigator.app.exitApp();
-			});
-			$("#premium").mouseup(function(){
-				//alert("mouseup" +$("#premium").val());
-				//$("#premium").val(5000); //set the value for apple bug(there ,the input wouldn't show effect if not del all number first.
-				$("#premium").select();
-				showBlankDiv();	
-			});	
-			function showBlankDiv(){
+			var arr_fu1=new Array(1070,1067,1066,1064,1058);
+			var arr_fu3=new Array(new Array("1080","1079","1078","1076","1073","1068"),new Array("1062","1061","1060","1059","1057","1053"),new Array("1032","1032","1031","1031","1029","1027"));
+			var arr_main2_5y=new  Array(1242,1242,1242,1242,1242,1242,1225,1225,1225,1225,1225,1195,1195,1195,1195,1195,1170,1170,1170,1170,1170,1145,1145,1145,1145,1145,1129,1129,1129,1129,1129,1116,1116,1116,1116,1116,1105,1105,1105,1105,1105,1086,1086,1086,1086,1086,1065,1065,1065,1065,1065,1038,1038,1038,1038,1038);
+			var arr_main2_10y=new Array(1252,1252,1252,1252,1252,1252,1235,1235,1235,1235,1235,1205,1205,1205,1205,1205,1180,1180,1180,1180,1180,1155,1155,1155,1155,1155,1139,1139,1139,1139,1139,1126,1126,1126,1126,1126,1115,1115,1115,1115,1115,1096,1096,1096,1096,1096,1075,1075,1075,1075,1075,1048,1048,1048,1048,1048);
+			var arr_n_a=new Array(1186,1187,1188);
+			var arr_bbb_car_1y=new Array(1140,1140,1140,1140,1140,1140,1140,1140,1140,1140,1140,1140,1140,1140,1116,1090,1064,1036,1008,1008,1008,1008,1008,1008,1008,1008,1008,1008,1008,1008,1008,1008,1008,1008,1008,1008,1008,1008,1008,1008,1008,1008,1008,1007,1007,1007,1007,1007,1007,1007,1007,1007,1007,1006,1006,1006,1006,1005,1005,1005,1004);
+			var arr_bbb_car_3y=new Array(3422,3422,3422,3422,3422,3422,3422,3422,3422,3422,3422,3422,3422,3348,3272,3192,3110,3054,3025,3024,3024,3024,3024,3024,3024,3024,3024,3024,3024,3024,3024,3024,3024,3024,3024,3024,3024,3023,3023,3023,3023,3023,3023,3023,3022,3022,3022,3022,3021,3021,3020,3020,3020,3019,3018,3017,3016,3015,3014,3012,3011);
+			var arr_bbb_car_5y=new Array(6305,6305,6305,6305,6305,6305,6305,6305,6305,6183,6055,5923,5787,5645,5499,5378,5283,5218,5184,5184,5184,5184,5184,5184,5184,5184,5184,5184,5183,5183,5183,5183,5183,5182,5182,5182,5182,5181,5181,5180,5180,5180,5179,5178,5178,5177,5176,5175,5174,5173,5172,5170,5168,5166,5164,5161,5158,5154,5150,5145,5140);
+			var arr_bbb_car_5ay=new Array(10306,10121,9929,9730,9524,9311,9090,8861,8623,8377,8122,7858,7583,7299,7003,6758,6568,6436,6368,6369,6370,6371,6371,6372,6374,6375,6376,6378,6380,6382,6384,6387,6391,6395,6399,6405,6410,6417,6424,6432,6442);
+			var arr_bbb_bus_1y=new Array(1140,1140,1140,1140,1140,1140,1140,1140,1140,1140,1140,1140,1140,1140,1117,1093,1069,1043,1017,1017,1017,1017,1017,1017,1017,1017,1017,1016,1016,1016,1016,1016,1016,1016,1016,1016,1016,1016,1016,1016,1016,1016,1016,1016,1016,1016,1016,1016,1016,1016,1015,1015,1015,1015,1015,1015,1014,1014,1014,1013,1013);
+			var arr_bbb_bus_3y=new Array(3422,3422,3422,3422,3422,3422,3422,3422,3422,3422,3422,3422,3422,3353,3281,3207,3130,3078,3050,3050,3050,3050,3050,3050,3050,3050,3050,3050,3050,3050,3050,3050,3050,3049,3049,3049,3049,3049,3049,3049,3049,3049,3048,3048,3048,3048,3048,3047,3047,3047,3046,3046,3045,3045,3044,3043,3042,3041,3040,3039,3037);
+			var arr_bbb_bus_5y=new Array(6305,6305,6305,6305,6305,6305,6305,6305,6305,6190,6071,5948,5820,5688,5551,5437,5349,5288,5256,5256,5256,5256,5256,5256,5256,5256,5256,5256,5256,5256,5255,5255,5255,5255,5255,5254,5254,5254,5253,5253,5253,5252,5252,5251,5251,5250,5249,5249,5248,5247,5246,5244,5243,5241,5239,5236,5233,5230,5226,5222,5218);
+			var arr_bbb_bus_5ay=new Array(10422,10249,10069,9884,9691,9492,9285,9071,8849,8619,8380,8133,7877,7611,7335,7106,6928,6806,6743,6744,6745,6747,6748,6750,6752,6754,6757,6759,6763,6766,6771,6776,6782,6789,6797,6805,6815,6826,6839,6853,6869);
+			var arr_n_a_cash1=new Array(1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1035,1034,1034,1034,1034,1034,1034,1034,1034,1034,1034);
+			var arr_n_a_cash2=new Array(1071,1071,1071,1071,1071,1071,1071,1071,1071,1071,1071,1071,1071,1071,1071,1071,1071,1071,1071,1071,1071,1071,1071,1071,1071,1071,1071,1071,1071,1071,1071,1071,1071,1071,1070,1070,1071,1071,1071,1071,1071,1071,1071,1071,1071,1071,1071,1071,1070,1070,1070,1070,1070,1070,1070,1070,1070,1070,1070,1069,1070,1070,1069,1069,1070,1069);
+			var arr_n_a_cash3=new Array(1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1108,1107,1107,1107,1107,1107,1107,1107,1107,1107,1107,1107,1107,1106,1107,1107);
+			var arr_n_a_cash4=new Array(1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1146,1145,1145,1146,1146,1146,1146,1146,1146);
+			var arr_n_a_cash=arr_n_a_cash1.concat(arr_n_a_cash2,arr_n_a_cash3,arr_n_a_cash4);  //concat the four arrays
+			var i_age=25;
+			var i_sex=0;
+			var i_years=5;
+			var i_premium=5000;
+			var f_mainpremium=0;
+			var f_additionalpremium=0;
+			var f_maincoverage=0;
+			var f_additionalcoverage=0;
+			var i_money_check=0; 
+			
+		$(function(){
+			var p = navigator.platform;
+		    if( p.indexOf('Linux') == -1){
+		    	$('.prn').show();		    	
+		    }
+		    else{		    	
+		    	$('.prn').hide();
+		    }	    
+						
+			$('.prnbtn').click(function(){
+				window.print();
+				});
+		});
+			function showBlankDiv(currInput){
 				//used for the premium input,so it would not be cover by the soft keyboard
 				var h=$(window).height();
 				//h=h+1; //just for break point
-				$("#blankdiv").height(0.4*h); //raise the premium input in window
-				var scroll_offset = $("#premium").offset(); //得到premium的offset，包含两个值，top和left
+				$(currInput).find(".blankdiv").first().height(0.4*h); //raise the premium input in window
+				var scroll_offset = $(currInput).offset(); //得到premium的offset，包含两个值，top和left
 				$("body,html").animate({
 					scrollTop:scroll_offset.top //让body的scrollTop等于pos的top，就实现了滚动
 				},0);
 			}
-			function hideBlankDiv(){
-				var h=$(window).height();
+			function hideBlankDiv(currInput){
+				//var h=$(window).height();
 				//h=h+1;  //just for break point
-				$("#blankdiv").height(0); //fall back the premium input in window
+				$(currInput).find(".blankdiv").first().height(0); //fall back the premium input in window
 				$("body,html").animate({scrollTop:0	},0);
 			}
-			$("#premium").blur(function(){
-				premiumOK();
-			});
 			function premiumOK(){ //value must be  integer multiple of 1000
-				var premium=$("#premium").val()*1;
-				if((Math.round(premium/1000)*1000) != premium){
+				var premium=i_money_check;
+				 
+				if(((Math.round(premium/1000)*1000) != premium)||(Math.round(premium/1000)*1000) ==0){
+				//alert("a");
+					//showBlankDiv();
+					$(".premiumalert").show();
+					$("#premium").select();
+					return(false);
+				}
+				else{
+				//alert("b");
+					$(".premiumalert").hide();
+					//hideBlankDiv();
+					return(true);
+				}
+			}
+			
+			function premiumOK_2(){ //value must be  integer multiple of 500
+				var premium=i_money_check;   //设定全局变量保存金额
+				if(((Math.round(premium/500)*500) != premium)||(Math.round(premium/500)*500) ==0 ||(Math.round(premium/500)*500) ==500) {
 					$(".premiumalert").show();
 					$("#premium").select();
 					return(false);
@@ -78,17 +108,71 @@
 					return(true);
 				}
 			}
-			$("#getguarantee").click(function(){
-				//if premiuOK,renew & show page nianbguarantee
-				if(premiumOK()){
-					i_age=$("#age").val();
-					i_sex=$("#male").is(':checked') ? 1:0;
-					i_years=$("#3year").is(':checked')? 3:5;
-					i_premium=$("#premium").val(); //old var  is customerinfo[3]
-					computeGuarantee();
-					$.mobile.changePage("#nianbguarantee");
+			
+			function premiumOK_20(){ //每份1000元,20份起售
+				var premium=i_money_check;   //设定全局变量保存金额
+				 
+				if(((Math.round(premium/1000)*1000) != premium)||(Math.round(premium/1000)*1000) ==0 ||(premium<20000)) {
+					$(".premiumalert").show();
+					$("#premium").select();
+					return(false);
 				}
-			});
+				else{
+					$(".premiumalert").hide();
+					hideBlankDiv();
+					return(true);
+				}
+			}
+			
+			function premiumOK_bbb(){ //百倍保要根据金额来提示
+				var premium=i_money_check;   //设定全局变量保存金额
+				var i_years_bbb=$('input:radio[name="years_bbb"]:checked').val();
+				if(i_years_bbb=="1")
+				{
+					if(((Math.round(premium/500)*500) != premium)||(Math.round(premium/500)*500) ==0 ||(Math.round(premium/500)*500) ==500||(premium>15000)) {
+					$("#remind_bbb").text("趸交请输入15000元以下");     //趸交不超过1.5W
+					$(".premiumalert").show();
+					$("#premium").select();
+					return(false);
+						}
+					else{
+						$(".premiumalert").hide();
+						hideBlankDiv();
+						return(true);
+						}
+				}
+				else
+				{
+					if(i_years_bbb=="3")
+					{
+						if(((Math.round(premium/500)*500) != premium)||(Math.round(premium/500)*500) ==0 ||(Math.round(premium/500)*500) ==500 ||(premium>5000)) {
+							$("#remind_bbb").text("3年期交请输入5000元以下");     //3年期不超过5000
+							$(".premiumalert").show();
+							$("#premium").select();
+							return(false);
+							}
+						else{
+							$(".premiumalert").hide();
+							hideBlankDiv();
+							return(true);
+						}
+					}
+					else
+					{
+						if(((Math.round(premium/500)*500) != premium)||(Math.round(premium/500)*500) ==0 ||(Math.round(premium/500)*500) ==500 ||(premium>3000)) {
+							$("#remind_bbb").text("5年期交请输入3000元以下");     //5年期不超过3000
+							$(".premiumalert").show();
+							$("#premium").select();
+							return(false);
+							}
+						else{
+							$(".premiumalert").hide();
+							hideBlankDiv();
+							return(true);
+						}
+					}
+				}
+			}
 			function computeGuarantee(){
 				//$("#customerinfoshow").text("success:"+customerinfo.join());
 				//alert($("#payperiodmain").text());
@@ -150,7 +234,7 @@
 													+Math.pow(1.035,4)+Math.pow(1.035,5))*Math.pow(1.035,10-5);
 				}
 				$("#annuityandprofit").text(formatNum(f_annuityandprofit));
-			}			
+			}		/*年B部分暂时注销测试*/			
 			function formatNum(num)
 			{//参数说明：num 要格式化的数字,简化为保留2位小数
 				num = String(num.toFixed(2));
@@ -158,6 +242,794 @@
 				while(re.test(num)) {num = num.replace(re,"$1,$2");}
 				return ("￥"+num);
 			}
+			
+			
+			function computeGuarantee_fu(){
+				//$("#customerinfoshow").text("success:"+customerinfo.join());
+				//alert($("#payperiodmain").text());
+				 $("#showage_f1").text(i_age);
+				//coverages used in table
+				
+				
+				var i_copiesMain=i_premium/1000;
+				 
+				if(i_age<=25)
+				{
+					f_maincoverage_f1=arr_fu1[0]*i_copiesMain;				
+				}
+				else
+				{	
+					if((i_age>=26)&&(i_age<=35))
+					{
+						f_maincoverage_f1=arr_fu1[1]*i_copiesMain;	
+					}
+					else
+					{
+						if((i_age>=36)&&(i_age<=45))
+						{
+							f_maincoverage_f1=arr_fu1[2]*i_copiesMain;
+						}
+						else
+						{
+							if((i_age>=46)&&(i_age<=55))
+							{
+								f_maincoverage_f1=arr_fu1[3]*i_copiesMain;
+							}
+							else
+							{
+								f_maincoverage_f1=arr_fu1[4]*i_copiesMain;
+							}
+						}
+					}
+				}
+				 
+				$("#mainpremium_f1").text(formatNum(i_premium*1));
+				
+				$("#maincoverage_f1").text(formatNum(f_maincoverage_f1));
+				 
+				var f_gomax_f1=f_maincoverage_f1*2;
+				$("#unexpectedgomax_f1").text(formatNum(f_gomax_f1));
+				
+				$("#termination_f1").text($("#maincoverage_f1").text());
+				$("#termination_f1_a").text($("#maincoverage_f1").text());
+				$("#mainpremium_f1_a").text($("#mainpremium_f1").text());
+			}		/*富1测试暂时注销*/ 
+		function computeGuarantee_fu3(){
+				//$("#customerinfoshow").text("success:"+customerinfo.join());
+				//alert($("#payperiodmain").text());
+				 $("#showage_f3").text(i_age);
+				//coverages used in table
+				
+				
+				var i_copiesMain=i_premium/1000;
+				var i_f3=9;
+				
+				if(i_age<=40)
+				{
+					i_f3=0;				
+				}
+				else
+				{	
+					if((i_age>=41)&&(i_age<=50))
+					{
+						i_f3=1;	
+					}
+					else
+					{
+						if((i_age>=51)&&(i_age<=55))
+						{
+							i_f3=2;	
+						}
+						else
+						{
+							if((i_age>=56)&&(i_age<=60))
+							{
+								i_f3=3;	
+							}
+							else
+							{
+								if((i_age>=61)&&(i_age<=65))
+								{
+									i_f3=4;	
+								}
+								else
+								{
+									i_f3=5;	
+								}
+							}
+						}
+					}
+				}
+				
+				if(i_years==3){
+					f_additionalcoverage=arr_fu3[1][i_f3]*i_copiesMain;
+					f_all_coverage=f_additionalcoverage*3;
+					$("#coverage_f3").text(formatNum(f_additionalcoverage*1));   //回显基本保额       
+					$("#mainpremium_f3").text(formatNum(i_premium*1));     //回显保费
+					$("#payperiodmain_f3").text(i_years+"年");
+				}
+				else{
+					if(i_years==6)
+					{
+						f_additionalcoverage=arr_fu3[2][i_f3]*i_copiesMain;
+						f_all_coverage=f_additionalcoverage*6;
+						$("#coverage_f3").text(formatNum(f_additionalcoverage*1));   //回显基本保额       
+						$("#mainpremium_f3").text(formatNum(i_premium*1));     //回显保费
+						$("#payperiodmain_f3").text(i_years+"年");
+					}
+					else
+					{
+						f_additionalcoverage=arr_fu3[0][i_f3]*i_copiesMain;
+						f_all_coverage=f_additionalcoverage*1;
+						$("#coverage_f3").text(formatNum(f_additionalcoverage*1));   //回显基本保额       
+						$("#mainpremium_f3").text(formatNum(i_premium*1));     //回显保费
+						$("#payperiodmain_f3").text("一次性交费");
+					}
+				}
+				
+				//$("#coverage_f3").text(formatNum(f_additionalcoverage));   //回显基本保额       
+				//$("#mainpremium_f3").text(formatNum(i_premium*1));     //回显保费
+				
+				 
+				$("#mainpremium_f3_a").text(formatNum(i_premium*1));     //回显保费
+				$("#f_all_coverage_f3").text(formatNum(f_all_coverage*1));     //回显满期保险金
+				 
+
+				$("#unexpectedgomin_f3_a").text(formatNum(f_additionalcoverage));   //回显最低金额=三种缴费方式的基本保额*缴费1年
+				$("#unexpectedgomin_f3_b").text(formatNum(f_additionalcoverage*2));   //回显最低金额=三种缴费方式的基本保额*缴费1年*2倍
+				$("#unexpectedgomin_f3_c").text(formatNum(f_additionalcoverage*3));   //回显最低金额=三种缴费方式的基本保额*缴费1年*3倍
+				
+				$("#unexpectedgomax_f3_a").text(formatNum(f_all_coverage));   //回显最高金额=三种缴费方式的基本保额*缴费年度*1倍
+				$("#unexpectedgomax_f3_b").text(formatNum(f_all_coverage*2));   //回显最高金额=三种缴费方式的基本保额*缴费年度*2倍
+				$("#unexpectedgomax_f3_c").text(formatNum(f_all_coverage*3));   //回显最高金额=三种缴费方式的基本保额*缴费年度*3倍
+				
+
+			}	 /*fu3*/
+			function computeGuarantee_mian2(){
+				//$("#customerinfoshow").text("success:"+customerinfo.join());
+				//alert($("#payperiodmain").text());
+				$("#showage_m2").text(i_age);
+
+				f_mainpremium=i_premium*1;
+				var i_copiesMain=f_mainpremium/1000;
+			 
+				f_maincoverage=((i_years==5)? arr_main2_5y[i_age]: arr_main2_10y[i_age])*i_copiesMain;
+				
+				f_annuity=((i_years==5)? (f_maincoverage*0.06): (f_maincoverage*0.1));//divided premium, 5year 6%;10year 10%
+				 	
+				$("#annuity_m2").text(formatNum(f_annuity));   //回显年金
+				$("#annuity_m2_a").text(formatNum(f_annuity));   //回显年金
+			 
+					
+				 		
+				if(i_years==5){
+					$("#maincoverage_m2").text(formatNum(f_maincoverage*1));     //回显基本保额			
+					$("#totalpremium_m2").text(formatNum(i_premium*1));        //回显所交保费
+					
+					$("#unexpectedgomax_m2_a").text(formatNum(f_maincoverage*5));   //回显最高金额=三种缴费方式的基本保额*缴费年度*1倍
+					$("#unexpectedgomax_m2_b").text(formatNum(f_maincoverage*2*5));   //回显最高金额=三种缴费方式的基本保额*缴费年度*2倍
+					$("#unexpectedgomax_m2_c").text(formatNum(f_maincoverage*3*5));   //回显最高金额=三种缴费方式的基本保额*缴费年度*3倍
+					$("#payperiodmain_m2").text(i_years+"年");
+				}
+				else
+				{
+					$("#maincoverage_m2").text(formatNum(f_maincoverage*1));     //回显基本保额			
+					$("#totalpremium_m2").text(formatNum(i_premium*1));        //回显所交保费
+					
+					$("#unexpectedgomax_m2_a").text(formatNum(f_maincoverage*10));   //回显最高金额=三种缴费方式的基本保额*缴费年度*1倍
+					$("#unexpectedgomax_m2_b").text(formatNum(f_maincoverage*2*10));   //回显最高金额=三种缴费方式的基本保额*缴费年度*2倍
+					$("#unexpectedgomax_m2_c").text(formatNum(f_maincoverage*3*10));   //回显最高金额=三种缴费方式的基本保额*缴费年度*3倍
+					$("#payperiodmain_m2").text(i_years+"年");
+				}
+				
+				$("#totalpremium_m2_a").text(formatNum(i_premium*1));        //同一变量不回显,故重新赋值回显180天内所交保费
+				
+				f_totalpremium=((i_years==5)? (i_premium*5): (i_premium*10));
+				$("#totalpremium_m2_all").text(formatNum(f_totalpremium*1));     //重新赋值回显仍然生存所交的总保费
+				
+				$("#unexpectedgomin_m2_a").text(formatNum(f_maincoverage));   //回显最低金额=三种缴费方式的基本保额*缴费1年
+				$("#unexpectedgomin_m2_b").text(formatNum(f_maincoverage*2));   //回显最低金额=三种缴费方式的基本保额*缴费1年*2倍
+				$("#unexpectedgomin_m2_c").text(formatNum(f_maincoverage*3));   //回显最低金额=三种缴费方式的基本保额*缴费1年*3倍
+							 
+				
+			}		/*绵2部分暂时注销测试*/	
+		function computeGuarantee_n_a(){
+				//$("#customerinfoshow").text("success:"+customerinfo.join());
+				//alert($("#payperiodmain").text());
+				 $("#showage_n_a").text(i_age);
+				//coverages used in table
+				
+				
+				var i_copiesMain=i_premium/1000;				 
+				var i_n_a=9;
+				
+				if(i_age<=59)
+				{
+					i_n_a=0;				
+				}
+				else
+				{	
+					if((i_age>=60)&&(i_age<=63))
+					{
+						i_n_a=1;
+					}
+					else
+					{
+						i_n_a=2;
+					}
+				}
+				
+				
+				f_maincoverage_n_a=arr_n_a[i_n_a]*i_copiesMain;
+				 
+				$("#mainpremium_n_a").text(formatNum(i_premium*1));                     //所交保费
+				$("#maincoverage_n_a").text(formatNum(f_maincoverage_n_a));              //基本保额
+						
+				$("#termination_n_a").text(formatNum(f_maincoverage_n_a*1));       //满期保险金
+				$("#disease_n_a").text(formatNum(i_premium*1.05));                          //重疾
+				$("#unexpected_n_a").text(formatNum(i_premium*2));                    //意外身故
+				
+				/*
+				f_cash_value1=arr_n_a_cash1[i_age]*i_copiesMain;
+				f_cash_value2=arr_n_a_cash2[i_age]*i_copiesMain;
+				f_cash_value3=arr_n_a_cash3[i_age]*i_copiesMain;
+				f_cash_value4=arr_n_a_cash4[i_age]*i_copiesMain;
+				
+				$("#cash_value1").text(formatNum(f_cash_value1*1));       //现金价值
+				$("#cash_value2").text(formatNum(f_cash_value2*1));       //现金价值
+				$("#cash_value3").text(formatNum(f_cash_value3*1));       //现金价值
+				$("#cash_value4").text(formatNum(f_cash_value4*1));       //现金价值
+				$("#cash_value5").text(formatNum(f_maincoverage_n_a*1));       //第五年现金价值等于满期保险金
+				
+				f_total_proceeds1=(arr_n_a_cash1[i_age]-1000)/1000;
+				f_total_proceeds2=(arr_n_a_cash2[i_age]-1000)/1000;
+				f_total_proceeds3=(arr_n_a_cash3[i_age]-1000)/1000;
+				f_total_proceeds4=(arr_n_a_cash4[i_age]-1000)/1000;
+				f_total_proceeds5=(arr_n_a[i_n_a]-1000)/1000;
+				
+				$("#total_proceeds1").text(f_total_proceeds1);       //累积年化收益率
+				$("#total_proceeds2").text(f_total_proceeds2);       //累积年化收益率
+				$("#total_proceeds3").text(f_total_proceeds3);       //累积年化收益率
+				$("#total_proceeds4").text(f_total_proceeds4);       //累积年化收益率
+				$("#total_proceeds5").text(f_total_proceeds5);       //累积年化收益率
+				
+				$("#total_proceeds1").text(f_total_proceeds1/1);       //累积年化收益率
+				$("#total_proceeds2").text(f_total_proceeds2/2);       //累积年化收益率
+				$("#total_proceeds3").text(f_total_proceeds3/3);       //累积年化收益率
+				$("#total_proceeds4").text(f_total_proceeds4/4);       //累积年化收益率
+				$("#total_proceeds5").text(f_total_proceeds5/5);       //累积年化收益率
+			  
+				*/
+				
+				var $profitTableItems=$('#nianaProfitTable span');				
+				for(j=0;j<4;j++){					
+					var k=j*3;					
+					var cash=arr_n_a_cash[(i_age*1)+j*66];
+					var f_cash_value=cash*i_copiesMain;
+					var f_total_proceeds=cash-1000;           //现金价值以1000为单位的收益部分
+					var f_avg_proceeds=Math.round((cash-1000)*10/(j+1));     //留到个位四舍五入确保最后为百分比保留两位
+					
+			   		$profitTableItems.eq(k++).text(formatNum(f_cash_value));
+			   		$profitTableItems.eq(k++).text(f_total_proceeds/10+"%");  // 因为是固定比例,所以直接用现金价值以1000为单位的收益部分再除以1000再乘以100
+			   		$profitTableItems.eq(k++).text(f_avg_proceeds/100+"%");			   		
+			   	}
+				
+				f_total_proceeds5=arr_n_a[i_n_a]-1000;
+				f_avg_proceeds=Math.round(f_total_proceeds5*10/5);      //累积扩大一百倍除以年度再四舍五入
+				$profitTableItems.eq(12).text(formatNum(f_maincoverage_n_a*1)); //第五年现金价值等于满期保险金
+				$profitTableItems.eq(13).text(f_total_proceeds5/10+"%"); //因为是固定比例,所以直接用满期保险金单位减去1000后再除以1000再乘以100
+				$profitTableItems.eq(14).text(f_avg_proceeds/100+"%"); //第5年特殊处理
+			  
+			}		/*新年A测试暂时注销*/ 
+		function computeGuarantee_bbb(){
+				//$("#customerinfoshow").text("success:"+customerinfo.join());
+				//alert($("#payperiodmain").text());
+				 $("#showage_bbb").text(i_age);
+				//coverages used in table
+				
+				
+				var i_copiesMain=i_premium/1000;
+				var i_duration=0;
+				var i_multiple=16;
+				var i_age_check;
+
+				 
+				if(i_years==1){
+					if(i_liability=="B") 
+					{
+						f_additionalcoverage=arr_bbb_bus_1y[i_age]*i_copiesMain;
+					}
+					else
+					{
+						f_additionalcoverage=arr_bbb_car_1y[i_age]*i_copiesMain;
+					}
+								
+					$("#payperiodmain_bbb").text("一次性交费");     //缴费期间
+					i_duration=5;					               //保险期间
+					f_max_premium=i_premium*1;                     //满期保费(最大)
+					i_age_check=i_age*1+5;                         //保险责任期间满看是否超过18岁
+				}
+				else{
+					if(i_years==3)
+					{
+						if(i_liability=="B") 
+						{
+							f_additionalcoverage=arr_bbb_bus_3y[i_age]*i_copiesMain;
+						}
+						else
+						{
+							f_additionalcoverage=arr_bbb_car_3y[i_age]*i_copiesMain;
+						}
+						
+						$("#payperiodmain_bbb").text(i_years+"年");     //缴费期间
+						i_duration=6;	                            //保险期间
+						f_max_premium=i_premium*3;                     //满期保费(最大)
+						i_age_check=i_age*1+6;                         //保险责任期间满看是否超过18岁
+					}
+					else
+					{
+						if(i_years==5)
+						{
+							if(i_liability=="B") 
+							{
+								f_additionalcoverage=arr_bbb_bus_5y[i_age]*i_copiesMain;
+							}
+							else
+							{
+								f_additionalcoverage=arr_bbb_car_5y[i_age]*i_copiesMain;
+							}
+							
+							$("#payperiodmain_bbb").text(i_years+"年");     //缴费期间
+							i_duration=10;	                              //保险期间
+							f_max_premium=i_premium*5;                     //满期保费(最大)
+							i_age_check=i_age*1+10;                         //保险责任期间满看是否超过18岁
+						}
+						else
+						{
+							if(i_liability=="B") 
+							{
+								f_additionalcoverage=arr_bbb_bus_5ay[i_age]*i_copiesMain;
+							}
+							else
+							{
+								f_additionalcoverage=arr_bbb_car_5ay[i_age]*i_copiesMain;
+							}
+							
+							$("#payperiodmain_bbb").text("5年");     //缴费期间
+							i_duration=30;	                              //保险期间
+							f_max_premium=i_premium*5;                     //满期保费(最大)
+							i_age_check=i_age*1+30;                         //保险责任期间满看是否超过18岁
+						}
+					}
+				}
+				
+				 
+				
+				/* 此处判断也是有错,舍去
+				if((f_max_premium>=15000) || (i_premium>=15000))
+				{
+					f_max_premium=15000;                 //最高240万限额
+					i_premium=15000;
+				}*/
+				
+				$("#duration_bbb").text(i_duration+"年");                  //回显保险期间
+				$("#disease_bbb").text(formatNum(i_premium*1.05));                            //重疾	
+				$("#disease_bbb_b").text(formatNum(i_premium*1.05));                          //重疾								
+				$("#f_all_coverage_bbb").text(formatNum(f_additionalcoverage*1));      //回显满期保险金=基本保险金额
+				$("#f_all_coverage_bbb_b").text(formatNum(f_additionalcoverage*1));     //回显满期保险金=基本保险金额
+				$("#f_all_coverage_bbb_dun").text(formatNum(f_additionalcoverage*1));      //回显满期保险金=基本保险金额
+				$("#f_all_coverage_bbb_b_dun").text(formatNum(f_additionalcoverage*1));     //回显满期保险金=基本保险金额
+				
+				$("#disease_bbb").text(formatNum(i_premium*1.05));                          //重疾_min		
+				$("#unexpected_air_bbb").text(formatNum(i_premium*160));                    //意外身故_航空_min
+
+				$("#disease_bbb_max").text(formatNum(f_max_premium*1.05));                          //重疾_max
+				$("#disease_bbb_max_b").text(formatNum(f_max_premium*1.05));                          //重疾_max
+				$("#disease_bbb_max_dun").text(formatNum(f_max_premium*1.05));                          //重疾_max
+				$("#disease_bbb_max_b_dun").text(formatNum(f_max_premium*1.05));                          //重疾_max					
+				$("#unexpected_air_bbb_max").text(formatNum(f_max_premium*160));                    //意外身故_航空_max
+				$("#unexpected_air_bbb_max_dun").text(formatNum(f_max_premium*160));                    //意外身故_航空_max
+				
+				$("#unexpected_bbb").text(formatNum(i_premium*16));                       //意外身故_min
+				$("#unexpected_bbb_max").text(formatNum(f_max_premium*16));                //意外身故_max
+				$("#unexpected_bbb_max_dun").text(formatNum(f_max_premium*16));                //意外身故_max
+				 
+				$("#unexpected_bbb_b").text(formatNum(i_premium*16));                       //意外身故_min
+				$("#unexpected_bbb_max_b").text(formatNum(f_max_premium*16));                //意外身故_max
+				$("#unexpected_bbb_max_b_dun").text(formatNum(f_max_premium*16));                //意外身故_max
+				$("#unexpected_bbb_max_dun").text(formatNum(f_max_premium*16));                //意外身故_max
+			
+				$("#age_bbb_min1").text(formatNum(i_premium*1.05));                          //18岁以下按照已交保费1.05赔付	
+				$("#age_bbb_min2").text(formatNum(i_premium*1.05));                          //18岁以下按照已交保费1.05赔付	
+				$("#age_bbb_min3").text(formatNum(i_premium*1.05));                          //18岁以下按照已交保费1.05赔付	
+				$("#age_bbb_min4").text(formatNum(i_premium*1.05));                          //18岁以下按照已交保费1.05赔付	
+				$("#age_bbb_min5").text(formatNum(i_premium*1.05));                          //18岁以下按照已交保费1.05赔付	
+				$("#age_bbb_max1").text(formatNum(f_max_premium*1.05));                          //18岁以下按照已交保费1.05赔付
+				$("#age_bbb_max2").text(formatNum(f_max_premium*1.05));                          //18岁以下按照已交保费1.05赔付
+				$("#age_bbb_max3").text(formatNum(f_max_premium*1.05));                          //18岁以下按照已交保费1.05赔付
+				$("#age_bbb_max4").text(formatNum(f_max_premium*1.05));                          //18岁以下按照已交保费1.05赔付
+				$("#age_bbb_max5").text(formatNum(f_max_premium*1.05));                          //18岁以下按照已交保费1.05赔付
+				$("#age_bbb_max1_dun").text(formatNum(f_max_premium*1.05));                          //18岁以下按照已交保费1.05赔付
+				$("#age_bbb_max2_dun").text(formatNum(f_max_premium*1.05));                          //18岁以下按照已交保费1.05赔付
+				$("#age_bbb_max3_dun").text(formatNum(f_max_premium*1.05));                          //18岁以下按照已交保费1.05赔付
+				$("#age_bbb_max4_dun").text(formatNum(f_max_premium*1.05));                          //18岁以下按照已交保费1.05赔付
+				$("#age_bbb_max5_dun").text(formatNum(f_max_premium*1.05));                          //18岁以下按照已交保费1.05赔付
+				
+				$("#age_bbb_min1_below").text(formatNum(i_premium*1.05));                          //18岁以下按照已交保费1.05赔付	
+				$("#age_bbb_min2_below").text(formatNum(i_premium*1.05));                          //18岁以下按照已交保费1.05赔付	
+				$("#age_bbb_min3_below").text(formatNum(i_premium*1.05));                          //18岁以下按照已交保费1.05赔付	
+				$("#age_bbb_min4_below").text(formatNum(i_premium*1.05));                          //18岁以下按照已交保费1.05赔付	
+				$("#age_bbb_min5_below").text(formatNum(i_premium*1.05));                          //18岁以下按照已交保费1.05赔付	
+				$("#age_bbb_max1_below").text(formatNum(f_max_premium*1.05));                          //18岁以下按照已交保费1.05赔付
+				$("#age_bbb_max2_below").text(formatNum(f_max_premium*1.05));                          //18岁以下按照已交保费1.05赔付
+				$("#age_bbb_max3_below").text(formatNum(f_max_premium*1.05));                          //18岁以下按照已交保费1.05赔付
+				$("#age_bbb_max4_below").text(formatNum(f_max_premium*1.05));                          //18岁以下按照已交保费1.05赔付
+				$("#age_bbb_max5_below").text(formatNum(f_max_premium*1.05));                          //18岁以下按照已交保费1.05赔付
+				$("#age_bbb_max1_below_dun").text(formatNum(f_max_premium*1.05));                          //18岁以下按照已交保费1.05赔付
+				$("#age_bbb_max2_below_dun").text(formatNum(f_max_premium*1.05));                          //18岁以下按照已交保费1.05赔付
+				$("#age_bbb_max3_below_dun").text(formatNum(f_max_premium*1.05));                          //18岁以下按照已交保费1.05赔付
+				$("#age_bbb_max4_below_dun").text(formatNum(f_max_premium*1.05));                          //18岁以下按照已交保费1.05赔付
+				$("#age_bbb_max5_below_dun").text(formatNum(f_max_premium*1.05));                          //18岁以下按照已交保费1.05赔付
+				
+				$("#disease_bbb_below").text(formatNum(i_premium*1.05));                            //重疾	
+				$("#disease_bbb_b_below").text(formatNum(i_premium*1.05));                          //重疾			
+				$("#disease_bbb_max_below").text(formatNum(f_max_premium*1.05));                          //重疾_max
+				$("#disease_bbb_max_b_below").text(formatNum(f_max_premium*1.05));                          //重疾_max	
+				$("#f_all_coverage_bbb_below").text(formatNum(f_additionalcoverage*1));      //回显满期保险金=基本保险金额
+				$("#f_all_coverage_bbb_b_below").text(formatNum(f_additionalcoverage*1));     //回显满期保险金=基本保险金额
+				
+				$("#disease_bbb_below_dun").text(formatNum(i_premium*1.05));                            //重疾	
+				$("#disease_bbb_b_below_dun").text(formatNum(i_premium*1.05));                          //重疾			
+				$("#disease_bbb_max_below_dun").text(formatNum(f_max_premium*1.05));                          //重疾_max
+				$("#disease_bbb_max_b_below_dun").text(formatNum(f_max_premium*1.05));                          //重疾_max	
+				$("#f_all_coverage_bbb_below_dun").text(formatNum(f_additionalcoverage*1));      //回显满期保险金=基本保险金额
+				$("#f_all_coverage_bbb_b_below_dun").text(formatNum(f_additionalcoverage*1));     //回显满期保险金=基本保险金额
+				
+				if(i_years==1)            //趸交
+				{
+					if(i_liability=="B") 
+					{
+						$("#unexpected_car_bbb_max_dun").text(formatNum(f_max_premium*16));                    //意外身故_自驾_max
+						$("#unexpected_bus_bbb_max_dun").text(formatNum(f_max_premium*160));                    //意外身故_公共交通_max
+						$("#unexpected_multiple_bus_dun").text(i_multiple*10+"倍");                 //公共倍数
+						$("#unexpected_multiple_air_dun").text(i_multiple*10+"倍");                 //航空倍数
+						$("#unexpected_multiple_car_dun").text(i_multiple*1+"倍");                 //自驾车倍数
+						$("#group_bbb").text("公共交通责任组合");                  //回显保险组合
+						if(i_age_check>=18)
+						{
+							$(".echo_bbb_b").hide();
+							$(".echo_bbb_a").hide();
+							$(".echo_bbb_a_below").hide();
+							$(".echo_bbb_b_below").hide();
+							$(".echo_bbb_b_dun").show();
+							$(".echo_bbb_a_dun").hide();
+							$(".echo_bbb_a_below_dun").hide();
+							$(".echo_bbb_b_below_dun").hide();
+							if(i_age<18)
+							{						
+								$(".alert_bbb").show();	
+							}
+							else
+							{
+								$(".alert_bbb").hide();
+							}
+						}
+						else
+						{
+							$(".echo_bbb_a_below").hide();
+							$(".echo_bbb_a").hide();
+							$(".echo_bbb_b").hide();
+							$(".echo_bbb_b_below").hide();
+							$(".echo_bbb_a_below_dun").hide();
+							$(".echo_bbb_a_dun").hide();
+							$(".echo_bbb_b_dun").hide();
+							$(".echo_bbb_b_below_dun").show();
+						}
+					}
+					else
+					{
+						$("#unexpected_car_bbb_dun").text(formatNum(i_premium*160));                    //意外身故_自驾_min
+						$("#unexpected_car_bbb_max_dun").text(formatNum(f_max_premium*160));                    //意外身故_自驾_max
+						$("#unexpected_bus_bbb_dun").text(formatNum(i_premium*16));                    //意外身故_公共交通_min
+						$("#unexpected_bus_bbb_max_dun").text(formatNum(f_max_premium*16));                    //意外身故_公共交通_max
+						$("#unexpected_multiple_bus_dun").text(i_multiple+"倍");                 //公共倍数
+						$("#unexpected_multiple_air_dun").text(i_multiple*10+"倍");                 //航空倍数
+						$("#unexpected_multiple_car_dun").text(i_multiple*10+"倍");                 //自驾车倍数
+						$("#group_bbb").text("自驾航空责任组合");                  //回显保险组合
+						if(i_age_check>=18)
+						{
+							$(".echo_bbb_a").hide();
+							$(".echo_bbb_b").hide();
+							$(".echo_bbb_b_below").hide();
+							$(".echo_bbb_a_below").hide();
+							$(".echo_bbb_a_dun").show();
+							$(".echo_bbb_b_dun").hide();
+							$(".echo_bbb_b_below_dun").hide();
+							$(".echo_bbb_a_below_dun").hide();
+							if(i_age<18)
+							{
+								$(".alert_bbb").show();
+							}
+							else
+							{
+								$(".alert_bbb").hide();
+							}
+						}
+						else
+						{
+							$(".echo_bbb_a_below").hide();
+							$(".echo_bbb_a").hide();
+							$(".echo_bbb_b").hide();
+							$(".echo_bbb_b_below").hide();
+							$(".echo_bbb_a_below_dun").show();
+							$(".echo_bbb_a_dun").hide();
+							$(".echo_bbb_b_dun").hide();
+							$(".echo_bbb_b_below_dun").hide();
+						}
+					}
+				}
+				else               
+				{
+					if(i_liability=="B") 
+					{
+						$("#unexpected_car_bbb").text(formatNum(i_premium*16));                    //意外身故_自驾_min
+						$("#unexpected_car_bbb_max").text(formatNum(f_max_premium*16));                    //意外身故_自驾_max
+						$("#unexpected_bus_bbb").text(formatNum(i_premium*160));                    //意外身故_公共交通_min
+						$("#unexpected_bus_bbb_max").text(formatNum(f_max_premium*160));                    //意外身故_公共交通_max
+						$("#unexpected_multiple_bus").text(i_multiple*10+"倍");                 //公共倍数
+						$("#unexpected_multiple_air").text(i_multiple*10+"倍");                 //航空倍数
+						$("#unexpected_multiple_car").text(i_multiple*1+"倍");                 //自驾车倍数
+						$("#group_bbb").text("公共交通责任组合");                  //回显保险组合
+						if(i_age_check>=18)
+						{
+							$(".echo_bbb_b").show();
+							$(".echo_bbb_a").hide();
+							$(".echo_bbb_a_below").hide();
+							$(".echo_bbb_b_below").hide();
+							$(".echo_bbb_b_dun").hide();
+							$(".echo_bbb_a_dun").hide();
+							$(".echo_bbb_a_below_dun").hide();
+							$(".echo_bbb_b_below_dun").hide();
+							if(i_age<18)
+							{						
+								$(".alert_bbb").show();	
+							}
+							else
+							{
+								$(".alert_bbb").hide();
+							}
+						}
+						else
+						{
+							$(".echo_bbb_a_below").hide();
+							$(".echo_bbb_a").hide();
+							$(".echo_bbb_b").hide();
+							$(".echo_bbb_b_below").show();
+							$(".echo_bbb_a_below_dun").hide();
+							$(".echo_bbb_a_dun").hide();
+							$(".echo_bbb_b_dun").hide();
+							$(".echo_bbb_b_below_dun").hide();
+						}
+					}
+					else
+					{
+						$("#unexpected_car_bbb").text(formatNum(i_premium*160));                    //意外身故_自驾_min
+						$("#unexpected_car_bbb_max").text(formatNum(f_max_premium*160));                    //意外身故_自驾_max
+						$("#unexpected_bus_bbb").text(formatNum(i_premium*16));                    //意外身故_公共交通_min
+						$("#unexpected_bus_bbb_max").text(formatNum(f_max_premium*16));                    //意外身故_公共交通_max
+						$("#unexpected_multiple_bus").text(i_multiple+"倍");                 //公共倍数
+						$("#unexpected_multiple_air").text(i_multiple*10+"倍");                 //航空倍数
+						$("#unexpected_multiple_car").text(i_multiple*10+"倍");                 //自驾车倍数
+						$("#group_bbb").text("自驾航空责任组合");                  //回显保险组合
+						if(i_age_check>=18)
+						{
+							$(".echo_bbb_a").show();
+							$(".echo_bbb_b").hide();
+							$(".echo_bbb_b_below").hide();
+							$(".echo_bbb_a_below").hide();
+							$(".echo_bbb_a_dun").hide();
+							$(".echo_bbb_b_dun").hide();
+							$(".echo_bbb_b_below_dun").hide();
+							$(".echo_bbb_a_below_dun").hide();
+							if(i_age<18)
+							{
+								$(".alert_bbb").show();
+							}
+							else
+							{
+								$(".alert_bbb").hide();
+							}
+						}
+						else
+						{
+							$(".echo_bbb_a_below").show();
+							$(".echo_bbb_a").hide();
+							$(".echo_bbb_b").hide();
+							$(".echo_bbb_b_below").hide();
+							$(".echo_bbb_a_below_dun").hide();
+							$(".echo_bbb_a_dun").hide();
+							$(".echo_bbb_b_dun").hide();
+							$(".echo_bbb_b_below_dun").hide();
+						}
+					}
+				}
+			}	 /*年年好百倍保*/
+			
+		$(document).on("pageinit", function() {			
+			 //age:0~55,-1 for not set,sex:1 for male,years:3 or 5,premium per year
+				//alert("getguarantee");
+				/* var i_age=25;
+				var i_sex=0;
+				var i_years=5;
+				var i_premium=5000;
+				var f_mainpremium=0;
+				var f_additionalpremium=0;
+				var f_maincoverage=0;
+				var f_additionalcoverage=0;
+				var i_money_check=0;  */  //moved to public var define area
+			
+			$.mobile.defaultPageTransition = "none";
+			//$("#cover").click(function(){
+			//	$.mobile.changePage("#main");
+			//});
+			$("#exitprogram").click(function(){
+				window.close();
+				//navigator.app.exitApp(); //navigator.app.exitApp();
+			});  
+			$(".premium_input").mouseup(function(){
+				//alert("mouseup" +$("#premium").val());
+				//$("#premium").val(5000); //set the value for apple bug(there ,the input wouldn't show effect if not del all number first.
+				$(".premium_input").select();
+				//showBlankDiv();	
+			});
+			/*年B部分,暂时注销测试 */
+			$("#getguarantee").click(function(){
+			//alert("B");
+				//if premiuOK,renew & show page nianbguarantee
+				i_money_check=$("#premium_input_nb").val();                    /*强行赋值,检查函数使用*/;
+				if(premiumOK()){
+					i_age=$("#age").val();
+					i_sex=$("#male").is(':checked') ? 1:0;
+					i_years=$("#threeYear").is(':checked')? 3:5;
+					i_premium=$("#premium_input_nb").val(); //old var  is customerinfo[3]
+					
+					computeGuarantee();
+					$.mobile.changePage("#nianbguarantee");					
+				}
+			});	
+			//raise the premium input in window,by giveing the div height below it
+			var h=$(window).height();
+			$(".blankdiv").each(function(){
+				$(this).height(0.4*h); 
+			});
+			$(".premium_input").each(function(){
+				$(this).focus(function(){
+					showBlankDiv(this);
+				});
+				$(this).blur(function(){
+					hideBlankDiv(this);
+				});
+			});
+			/* $(".premium_input").each(function(){
+				$(this).blur(function(){
+					hideBlankDiv(this);
+				});
+			});
+			$(".premium_input").blur(function(){
+				hideBlankDiv();
+			}); */
+			/*fu3  info  */
+			$("#getguarantee_fu3").click(function(){
+				//if premiuOK,renew & show page nianbguarantee
+				 i_money_check=$("#premium_input_f3").val();                    /*强行赋值,检查函数使用*/;
+				if(premiumOK_2()){
+					i_age=$("#age_f3").val();
+					//i_sex=$("#male").is(':checked') ? 1:0;
+					i_years=$('input:radio[name="years_f3"]:checked').val();
+					i_premium=$("#premium_input_f3").val(); //old var  is customerinfo[3]
+					 
+					computeGuarantee_fu3();
+					$.mobile.changePage("#fu3guarantee");
+					 
+				}
+			});
+			
+			
+			/*mian2 info  */
+			$("#getguarantee_mian2").click(function(){
+				//if premiuOK,renew & show page nianbguarantee
+				i_money_check=$("#premium_input_m2").val();                    /*强行赋值,检查函数使用*/; 
+				if(premiumOK_2()){
+					i_age=$("#age_m2").val();
+					//i_sex=$("#male").is(':checked') ? 1:0;
+					//i_years=$("#fiveYear").is(':checked')? 5:10;
+					i_years=$('input:radio[name="years_m2"]:checked').val();
+					i_premium=$("#premium_input_m2").val(); //old var  is customerinfo[3]
+					 
+					computeGuarantee_mian2();
+					$.mobile.changePage("#mian2guarantee");
+					
+				}
+			});
+			
+			
+			
+			/*新年A测试暂时注销  */
+			$("#getguarantee_n_a").click(function(){
+				//if premiuOK,renew & show page nianbguarantee
+				//premium=premium_input_f1;
+				 
+				 i_money_check=$("#premium_input_n_a").val();                    /*强行赋值,检查函数使用*/;
+				if(premiumOK_20()){
+					i_age=$("#age_n_a").val();
+					i_premium=$("#premium_input_n_a").val(); //old var  is customerinfo[3]
+					
+					computeGuarantee_n_a();
+					$.mobile.changePage("#n_a_guarantee");
+					
+				}
+			});
+			
+			
+			/*年年好百倍保  info  */ 
+			  $("#fiveYear_bbb_a").click(function(){	
+					$("#explain_bbb").text("被保险人年龄（0至40岁）：");   
+					$('#age_bbb').attr('max','40');
+					$('#age_bbb').val(25);
+			}); 
+			$("#oneYear_bbb").click(function(){	
+					$("#explain_bbb").text("被保险人年龄（0至60岁）：");   
+					$('#age_bbb').attr('max','60');
+					$('#age_bbb').val(25);
+			}); 
+			$("#threeYear_bbb").click(function(){	
+					$("#explain_bbb").text("被保险人年龄（0至60岁）：");   
+					$('#age_bbb').attr('max','60');
+					$('#age_bbb').val(25);
+			}); 
+			$("#fiveYear_bbb").click(function(){	
+					$("#explain_bbb").text("被保险人年龄（0至60岁）：");   
+					$('#age_bbb').attr('max','60');
+					$('#age_bbb').val(25);
+			}); 
+			
+						
+			$("#getguarantee_bbb").click(function(){
+				//if premiuOK,renew & show page nianbguarantee
+				 i_money_check=$("#premium_input_bbb").val();                    //强行赋值,检查函数使用 
+				 
+				if(premiumOK_bbb()){
+					i_age=$("#age_bbb").val();
+					//i_sex=$("#male").is(':checked') ? 1:0;
+					i_years=$('input:radio[name="years_bbb"]:checked').val();
+					i_liability=$('input:radio[name="liability_bbb"]:checked').val();
+					i_premium=$("#premium_input_bbb").val(); //old var  is customerinfo[3]
+				
+					computeGuarantee_bbb();
+					$.mobile.changePage("#bbb_guarantee");
+					 
+				}
+			});
+			/*富1测试暂时注销  */
+			$("#getguarantee_fu").click(function(){
+				//if premiuOK,renew & show page nianbguarantee
+				//premium=premium_input_f1;
+				 
+				 i_money_check=$("#premium_input_f1").val();                    /*强行赋值,检查函数使用*/;
+				if(premiumOK()){
+					i_age=$("#age_f1").val();
+					//i_sex=$("#male").is(':checked') ? 1:0;
+					//i_years=$("#threeYear").is(':checked')? 3:5;
+					i_premium=$("#premium_input_f1").val(); //old var  is customerinfo[3]
+					
+					computeGuarantee_fu();
+					$.mobile.changePage("#fu1guarantee");
+					
+				}
+			});
+			
+			
+			
 		});
 	</script>
 </head>
@@ -166,29 +1038,38 @@
         <div data-role="header" data-theme="c" data-position="fixed" class="header " > 
              <div data-role="controlgroup" data-type="horizontal"  class="headerbuttons ui-controlgroup-controls " data-corners="false">
                 	<a  href="#" data-role="button" data-icon="star"><span class="ui-btn-text headertext">热 销</span></a>
-                	<a href="#" data-role="button" ><span class="ui-btn-text headertext">富富余</span></a>
+               <!-- 	<a href="#" data-role="button" ><span class="ui-btn-text headertext">富富余</span></a>
                 	<a href="#" data-role="button" ><span class="ui-btn-text headertext">绵绵寿</span></a>
                 	<a href="#" data-role="button" ><span class="ui-btn-text headertext">年年好</span></a>
-                	<a href="#" data-role="button"  id="exitprogram" ><span class="ui-btn-text headertext">其  它</span></a>
+                	<a href="#" data-role="button"  id="exitprogram" ><span class="ui-btn-text headertext">其  它</span></a>   -->
             </div>
 
         </div><!-- /header --> 
         <div data-role="content" >
             <div class="ui-grid-a hotproducts" >
-            	<div class="ui-block-a"><a href="#nianbinfo"><img src="img/nnh.png" /><br/>年B重疾保障计划 </a> </div>
-                <div class="ui-block-b" ><a href="#"><img src="img/ffy.png" style="opacity:0.4; "/><br/>富富余一号 </a> </div>
-                <div class="ui-block-a"><a href="#"><img src="img/mms.png" style="opacity:0.4;" /><br/>绵绵寿二号 </a> </div>
-                <div class="ui-block-b"><a href="#"><img src="img/llt.png" style="opacity:0.4;" /><br/>禄禄通九号 </a> </div>
+				<div class="ui-block-a"><a href="#nian_a_info"><img src="img/nnh.png"  /><br/>年年好新A款 </a> </div>
+				<div class="ui-block-b" ><a href="#nian_bbb_info"><img src="img/nnh.png" /><br/>年年好百倍保 </a> </div>
+				<div class="ui-block-a"><a href="#nianbinfo"><img src="img/nnh.png" /><br/>年年好重疾保障计划 </a> </div>
+				<div class="ui-block-b"><a href="#mian2info"><img src="img/mms.png"  /><br/>绵绵寿二号 </a> </div>					
+                <div class="ui-block-a" ><a href="#fu1info"><img src="img/ffy.png" /><br/>富富余一号 </a> </div>
+				<div class="ui-block-b" ><a href="#fu3info"><img src="img/ffy.png" /><br/>富富余三号 </a> </div>
+                				
+               <!-- <div class="ui-block-b"><a href="#"><img src="img/llt.png" style="opacity:0.4;" /><br/>禄禄通九号 </a> </div> -->
             </div>
          </div><!-- /content -->    
         <div data-role="footer" class="footer">
-            <h4>热销险种</h4>
+            <h4>中邮保险销售辅助工具V2.0.5</h4>
         </div><!-- /footer -->
     </div>
-<!-- page NianBinfo -->
+	
+
+	
+	
+	
+<!-- page NianBinfo    -->
 <div data-role="page"  id="nianbinfo" class="info">
 	<div data-role="header"  data-theme="c">
-		<h1 aria-level="1" role="heading" class="ui-title">年年好B重疾保障计划</h1>
+		<h1 aria-level="1" role="heading" class="ui-title">年年好重疾保障计划</h1>
 		<a title="Home" data-theme="f" data-wrapperels="span" data-iconshadow="true" data-shadow="true" data-corners="true" 
         		class="ui-btn-left ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-btn-up-f" 
                 href="#main" data-icon="home" data-iconpos="notext" data-direction="reverse">
@@ -197,7 +1078,7 @@
     </div>
     <div data-role="content">
         <div class="customerinfo">
-        	<h2>参保信息</h2>
+        	<h2>投保信息</h2>
                     <div class="customertext">被保险人年龄（0至55岁）：</div>
                     <div class="divage"><input id="age" type="range"  value="25" min="0" max="55" /></div><br/><hr/><br/>
                     <div class="customertext">被保险人性别：</div>
@@ -209,27 +1090,216 @@
                     </div><hr/><br/>
                     <div class="customertext">交 费 期：</div>
                     <div id="" class="ui-grid-a  smallinfoinput" >
-                            <div class="ui-block-a"><label for="3year" data-mini="true"  data-inline="true">
-                                <input type="radio" name="years" id="3year" value="3"  />3年</label></div>
-                            <div class="ui-block-b"><label for="5year" data-mini="true"  data-inline="true">
-                                <input type="radio" name="years" id="5year" value="5" checked="checked" />5年
+                            <div class="ui-block-a"><label for="threeYear" data-mini="true"  data-inline="true">
+                                <input type="radio" name="years" id="threeYear" value="3"  />3年</label></div>
+                            <div class="ui-block-b"><label for="fiveYear" data-mini="true"  data-inline="true">
+                                <input type="radio" name="years" id="fiveYear" value="5" checked="checked" />5年
                                 </label></div>
                     </div><hr/><br/>
                     <div class="customertext">年交费合计（要求为1000的整数倍，单位：元）：</div>
-                    <input id="premium" type="number" data-mini="true" value="1000" min="1000" step="1000"/>
+                    <input class="premium_input" id="premium_input_nb" type="number" data-mini="true" value="1000" min="1000" step="1000"/>
                     <span class="premiumalert">本保险产品每份保费1000元，请输入大于1000且为1000整倍数的数值！</span><br/><hr/>
 		</div> 
         <div class="ui-block-a getguaranteediv"><div  data-role="button" id="getguarantee">计算保险利益</div></div><br/><br/>
     </div>
-    <div id="oneblankdiv"></div>
-    <div id="blankdiv"></div>
+    <div class="oneblankdiv"></div>
+    <div class="blankdiv"></div>
     <div data-role="footer" class="footer">
     	<div class="footertext">年年好保你好，重疾保障程度高，生存金早早领，复利收益乐陶陶！</div>
     </div>
 </div> <!--End of page nianBinfo -->
+
+
+
+<!-- page Fu1info   -->
+<div data-role="page"  id="fu1info" class="info">
+	<div data-role="header"  data-theme="c">
+		<h1 aria-level="1" role="heading" class="ui-title">富富余一号</h1>
+		<a title="Home" data-theme="f" data-wrapperels="span" data-iconshadow="true" data-shadow="true" data-corners="true" 
+        		class="ui-btn-left ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-btn-up-f" 
+                href="#main" data-icon="home" data-iconpos="notext" data-direction="reverse">
+        	<span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">
+            	&nbsp;</span><span class="ui-icon ui-icon-home ui-icon-shadow">&nbsp;</span></span></a>
+    </div>
+    <div data-role="content">
+        <div class="customerinfo">
+        	<h2>投保信息</h2>
+                    <div class="customertext">被保险人年龄（0至65岁）：</div>
+                    <div class="divage"><input id="age_f1" type="range"  value="25" min="0" max="65" /></div><br/><hr/><br/>
+                    <div class="customertext">交费方式：趸交</div><hr/><br/>
+                    <div class="customertext">年交费合计（要求为1000的整数倍，单位：元）：</div>
+                    <input class="premium_input" id="premium_input_f1" type="number" data-mini="true" value="1000" min="1000" step="1000"/>
+                    <span class="premiumalert">本保险产品每份保费1000元，请输入大于1000且为1000整倍数的数值！</span><br/><hr/>
+		</div> 
+        <div class="ui-block-a getguaranteediv"><div  data-role="button" id="getguarantee_fu">计算保险利益</div></div><br/><br/>
+    </div>
+    <div class="oneblankdiv"></div>
+    <div class="blankdiv"></div>
+    <div data-role="footer" class="footer">
+    	<div class="footertext">富富余一号</div>
+    </div>
+</div> <!--End of page fu1info -->
+
+
+<!-- page Fu3info   -->
+<div data-role="page"  id="fu3info" class="info">
+	<div data-role="header"  data-theme="c">
+		<h1 aria-level="1" role="heading" class="ui-title">富富余三号</h1>
+		<a title="Home" data-theme="f" data-wrapperels="span" data-iconshadow="true" data-shadow="true" data-corners="true" 
+        		class="ui-btn-left ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-btn-up-f" 
+                href="#main" data-icon="home" data-iconpos="notext" data-direction="reverse">
+        	<span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">
+            	&nbsp;</span><span class="ui-icon ui-icon-home ui-icon-shadow">&nbsp;</span></span></a>
+    </div>
+    <div data-role="content">
+        <div class="customerinfo">
+        	<h2>投保信息</h2>
+                    <div class="customertext">被保险人年龄（0至70岁）：</div>
+                    <div class="divage"><input id="age_f3" type="range"  value="25" min="0" max="70" /></div><br/><hr/><br/>
+                    <div class="customertext">交 费 期：</div>
+                    <div id="" class="ui-grid-b  smallinfoinput" >
+							<div class="ui-block-a"><label for="0year_f3" data-mini="true"  data-inline="true">
+                                <input type="radio" name="years_f3" id="0year_f3" value="0"  />趸交</label></div>
+                            <div class="ui-block-b"><label for="3year_f3" data-mini="true"  data-inline="true">
+                                <input type="radio" name="years_f3" id="3year_f3" value="3"  />3年</label></div>
+                            <div class="ui-block-c"><label for="6year_f3" data-mini="true"  data-inline="true">
+                                <input type="radio" name="years_f3" id="6year_f3" value="6" checked="checked"  />6年
+                                </label></div>
+                    </div><hr/><br/>
+                    <div class="customertext">年交费合计（要求为500的整数倍，2份起售，单位：元）：</div>
+                    <input class="premium_input" id="premium_input_f3" type="number" data-mini="true" value="1000" min="1000" step="500"/>
+                    <span class="premiumalert">本保险产品每份保费500元,最低2份起售,请输入大于1000且为500整倍数的数值！</span><br/><hr/>
+		</div> 
+        <div class="ui-block-a getguaranteediv"><div  data-role="button" id="getguarantee_fu3">计算保险利益</div></div><br/><br/>
+    </div>
+    <div class="oneblankdiv"></div>
+    <div class="blankdiv"></div>
+    <div data-role="footer" class="footer">
+    	<div class="footertext">富富余三号</div>
+    </div>
+</div> <!--End of page fu3info -->
+
+
+<!-- page mian2info  -->
+<div data-role="page"  id="mian2info" class="info">
+	<div data-role="header"  data-theme="c">
+		<h1 aria-level="1" role="heading" class="ui-title">绵绵寿二号</h1>
+		<a title="Home" data-theme="f" data-wrapperels="span" data-iconshadow="true" data-shadow="true" data-corners="true" 
+        		class="ui-btn-left ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-btn-up-f" 
+                href="#main" data-icon="home" data-iconpos="notext" data-direction="reverse">
+        	<span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">
+            	&nbsp;</span><span class="ui-icon ui-icon-home ui-icon-shadow">&nbsp;</span></span></a>
+    </div>
+    <div data-role="content">
+        <div class="customerinfo">
+        	<h2>投保信息</h2>
+                    <div class="customertext">被保险人年龄（0至55岁）：</div>
+                    <div class="divage"><input id="age_m2" type="range"  value="25" min="0" max="55" /></div><br/><hr/><br/>
+                    <div class="customertext">交 费 期：</div>
+                    <div id="" class="ui-grid-a  smallinfoinput" >
+                            <div class="ui-block-a"><label for="5year_m2" data-mini="true"  data-inline="true">
+                                <input type="radio" name="years_m2" id="5year_m2" value="5"   />5年</label></div>
+                            <div class="ui-block-b"><label for="10year_m2" data-mini="true"  data-inline="true">
+                                <input type="radio" name="years_m2" id="10year_m2" value="10" checked="checked" />10年
+                                </label></div>
+                    </div><hr/><br/>
+                    <div class="customertext">年交费合计（要求为500的整数倍，2份起售，单位：元）：</div>
+                    <input class="premium_input" id="premium_input_m2" type="number" data-mini="true" value="1000" min="1000" step="500"/>
+                    <span class="premiumalert">本保险产品每份保费500元,最低2份起售,请输入大于1000且为500整倍数的数值！</span><br/><hr/>
+		</div> 
+        <div class="ui-block-a getguaranteediv"><div  data-role="button" id="getguarantee_mian2">计算保险利益</div></div><br/><br/>
+    </div>
+    <div class="oneblankdiv"></div>
+    <div class="blankdiv"></div>
+    <div data-role="footer" class="footer">
+    	<div class="footertext">绵绵寿二号</div>
+    </div>
+</div> <!--End of page mian2info -->
+
+<!-- page nian_a_info   -->
+<div data-role="page"  id="nian_a_info" class="info">
+	<div data-role="header"  data-theme="c">
+		<h1 aria-level="1" role="heading" class="ui-title">年年好新A款</h1>
+		<a title="Home" data-theme="f" data-wrapperels="span" data-iconshadow="true" data-shadow="true" data-corners="true" 
+        		class="ui-btn-left ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-btn-up-f" 
+                href="#main" data-icon="home" data-iconpos="notext" data-direction="reverse">
+        	<span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">
+            	&nbsp;</span><span class="ui-icon ui-icon-home ui-icon-shadow">&nbsp;</span></span></a>
+    </div>
+    <div data-role="content">
+        <div class="customerinfo">
+        	<h2>投保信息</h2>
+                    <div class="customertext">被保险人年龄（0至65岁）：</div>
+                    <div class="divage"><input id="age_n_a" type="range"  value="25" min="0" max="65" /></div><br/><hr/><br/>
+                    <div class="customertext">交费方式：趸交</div><hr/><br/>
+                    <div class="customertext">年交费合计（要求为1000的整数倍，单位：元）：</div>
+                    <input class="premium_input" id="premium_input_n_a" type="number" data-mini="true" value="20000" min="20000" step="1000"/>
+                    <span class="premiumalert">本保险产品每份保费1000元,最低20份起售,请输入大于20000且为1000整倍数的数值！</span><br/><hr/>
+		</div> 
+        <div class="ui-block-a getguaranteediv"><div  data-role="button" id="getguarantee_n_a">计算保险利益</div></div><br/><br/>
+    </div>
+    <div class="oneblankdiv"></div>
+    <div class="blankdiv"></div>
+    <div data-role="footer" class="footer">
+    	<div class="footertext">年年好新A款</div>
+    </div>
+</div> <!--End of page nian_a_info -->
+
+
+<!-- page nian_bbb_info   -->
+<div data-role="page"  id="nian_bbb_info" class="info">
+	<div data-role="header"  data-theme="c">
+		<h1 aria-level="1" role="heading" class="ui-title">年年好百倍保</h1>
+		<a title="Home" data-theme="f" data-wrapperels="span" data-iconshadow="true" data-shadow="true" data-corners="true" 
+        		class="ui-btn-left ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-btn-up-f" 
+                href="#main" data-icon="home" data-iconpos="notext" data-direction="reverse">
+        	<span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">
+            	&nbsp;</span><span class="ui-icon ui-icon-home ui-icon-shadow">&nbsp;</span></span></a>
+    </div>
+    <div data-role="content">
+        <div class="customerinfo">
+        	<h2>投保信息</h2>
+                   <!-- <div class="customertext">被保险人年龄（0至70岁）：</div>
+                    <div class="divage"><input id="age_bbb" type="range"  value="25" min="0" max="70" /></div><br/><hr/><br/>--->
+                    <div class="customertext">交 费 期：</div>
+                    <div id="show_divage_bbb_60" class="ui-grid-c " >
+							<div class="ui-block-a"><label for="oneYear_bbb" data-mini="true"  data-inline="true">
+                                <input type="radio" name="years_bbb" id="oneYear_bbb" value="1" onclick="oneYear_bbb" />趸交5年期</label></div>
+                            <div class="ui-block-b"><label for="threeYear_bbb" data-mini="true"  data-inline="true">
+                                <input type="radio" name="years_bbb" id="threeYear_bbb" value="3" onclick="threeYear_bbb" />3年交6年期</label></div>
+                            <div class="ui-block-c"><label for="fiveYear_bbb" data-mini="true"  data-inline="true">
+                                <input type="radio" name="years_bbb" id="fiveYear_bbb" value="5"  onclick="fiveYear_bbb" />5年交10年期</label></div>
+							<div class="ui-block-d"><label for="fiveYear_bbb_a" data-mini="true"  data-inline="true">
+                                <input type="radio" name="years_bbb" id="fiveYear_bbb_a" value="5a"  checked="checked"  onclick="fiveYear_bbb_a"/>5年交30年期</label></div>
+                    </div><hr/><br/>
+					<div class="customertext">保险组合</div>
+                    <div id=" " class="ui-grid-a  smallinfoinput" >
+                            <div class="ui-block-a"><label for="liability" data-mini="true"  data-inline="true">
+                                <input type="radio" name="liability_bbb" id="liability_A" value="A"  checked="checked" />A-自驾航空保障</label></div>
+                            <div class="ui-block-b"><label for="liability" data-mini="true"  data-inline="true">
+                                <input type="radio" name="liability_bbb" id="liability_B" value="B"   />B-公共交通保障
+                                </label></div>
+                    </div><hr/><br/>
+					<span  class="divage_bbb_40"><div class="customertext" id="explain_bbb" >被保险人年龄（0至40岁）：</div> 
+						<input id="age_bbb" type="range"  value="25" min="0" max="40" /></span><br/><hr/><br/>
+                    <div class="customertext">年交费合计（要求为500的整数倍，2份起售，单位：元）：</div>
+                    <input class="premium_input" id="premium_input_bbb" type="number" data-mini="true" value="1000" min="1000" step="500"/>
+                    <span class="premiumalert">提示:本款保险产品每份保费500元,最低2份起售,<span span id="remind_bbb"></span>大于1000且为500整倍数的数值!(工具仅做自动核保范围内的演示)</span><br/><hr/>
+		</div> 
+        <div class="ui-block-a getguaranteediv"><div  data-role="button" id="getguarantee_bbb">计算保险利益</div></div><br/><br/>
+    </div>
+    <div class="oneblankdiv"></div>
+    <div class="blankdiv"></div>
+    <div data-role="footer" class="footer">
+    	<div class="footertext">年年好百倍保</div>
+    </div>
+</div> <!--End of page nian_bbb_info -->
+
+
+<!-- page NianBinfo     -->
 <div data-role="page" id="nianbguarantee"  class="info">
 	<div data-role="header"  data-theme="c">
-		<h1 aria-level="1" role="heading" class="ui-title">年年好B重疾保障计划</h1>
+		<h1 aria-level="1" role="heading" class="ui-title">年年好重疾保障计划</h1>
 		<a title="更新计划" data-theme="f" data-wrapperels="span" data-iconshadow="true" data-shadow="true" data-corners="true" 
         		class="ui-btn-left ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-btn-up-f" 
                 href="#nianbinfo" data-icon="back" data-iconpos="notext" data-direction="reverse">
@@ -237,7 +1307,7 @@
             	&nbsp;</span><span class="ui-icon ui-icon-back ui-icon-shadow">&nbsp;</span></span></a>
     </div>
     <div data-role="content">
-        <div><span class="title">险种亮点：</span> 年年好保你好，重疾保障程度高<br/>
+        <div><span class="title">产品亮点：</span> 年年好保你好，重疾保障程度高<br/>
            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;生存金早早领，复利收益乐陶陶!<br/><br/>
         </div>
         <div><span class="title">基本信息:</span>被保险人年龄<span id="showage" class="parameter">25</span>岁,&nbsp;&nbsp;
@@ -249,7 +1319,7 @@
                 <div class="ui-block-d tablehead">所交保费</div>
                 <div class="ui-block-e tablehead">基本保额</div>
                 
-                <div class="ui-block-a table">年年好B年金保险(分红型)</div>
+                <div class="ui-block-a table">年年好年金保险(分红型)</div>
                 <div class="ui-block-b table tablecontent"><span id="payperiodmain" class="parameter">5年</span></div>
                 <div class="ui-block-c table tablecontent"><span class="parameter">10年</span></div>
                 <div class="ui-block-d table tablecontent"><span id="mainpremium" class="parameter">9500元</span></div>
@@ -270,30 +1340,415 @@
         <div>
         	 <div class="title">一、保险责任：</div>
              <div class="title2">(一)重大疾病保险金</div>
-             <div class="coveragetext">自本合同生效之日起180天后，被保险人经我公司认可的医院，由专科医生诊断初患本合同约定的“重大疾病”，给付重疾保障金<span class="coverage" id="seriousillness"></span>，附加重大疾病保险责任终止，主险责任继续有效。</div>
+             <div class="coveragetext">自本合同生效之日起180天后，被保险人经我公司认可的医院，由专科医生诊断初患本合同约定的“重大疾病”，给付重疾保障金<span class="coverage" id="seriousillness"></span>元，附加重大疾病保险责任终止，主险责任继续有效。</div>
              <div class="title2">(二)疾病身故、全残保险金金</div>
-             <div class="coveragetext">被保险人于本合同生效之日起180天后因疾病导致身故或全残，最低给付金额<span class="coverage" id="gomin"></span>，最高给付金额<span class="coverage" id="gomax"></span>元，本合同效力终止。</div>
-            　<div class="alert">自保险责任开始日或自最近的合同效力恢复日(以较迟着为准)起180日内(含第180日)因疾病身故或全残的，按无息的已交保险费金额给付”身故保险金”或”全残保险金”,本合同效力终止。</div>
+             <div class="coveragetext">被保险人于本合同生效之日起180天后因疾病导致身故或全残，最低给付金额<span class="coverage" id="gomin"></span>元，最高给付金额<span class="coverage" id="gomax"></span>元，本合同效力终止。</div>
+            <div class="alert">自保险责任开始日或自最近的合同效力恢复日(以较迟着为准)起180日内(含第180日)因疾病身故或全残的，按无息的已交保险费金额给付”身故保险金”或”全残保险金”,本合同效力终止。</div>
              <div class="title2">(三)意外身故、全残保险金</div>
-            <div class="coveragetext">被保险人于合同生效之日起因意外导致身故或全残，最低给付额<span class="coverage" id="unexpectedgomin"></span>，最高给付金额<span class="coverage" id="unexpectedgomax"></span>，本合同效力终止。</div>
+            <div class="coveragetext">被保险人于合同生效之日起因意外导致身故或全残，最低给付额<span class="coverage" id="unexpectedgomin"></span>元，最高给付金额<span class="coverage" id="unexpectedgomax"></span>元，本合同效力终止。</div>
              <div class="title2">(四)满期保险金</div>
-            <div class="coveragetext">保险合同期满，领取满期金<span class="coverage" id="termination"></span>，本合同效力终止。</div>
+            <div class="coveragetext">保险合同期满，领取满期金<span class="coverage" id="termination"></span>元，本合同效力终止。</div>
              <div class="title2">(五)生存年金</div>
-             <div class="coveragetext"> 在交费期间内，被保险人生存，每年可领取生存年金<span class="coverage" id="annuity"></span>，若选择累积生息，按3.5%累积利率估算保险期满可领取年金及收益<span class="coverage" id="annuityandprofit"></span>。</div>
+             <div class="coveragetext"> 在交费期间内，被保险人生存，每年可领取生存年金<span class="coverage" id="annuity"></span>元，若选择累积生息，按3.5%累积利率估算保险期满可领取年金及收益<span class="coverage" id="annuityandprofit"></span>元。</div>
             <div class="title">二、合同权益</div>
              <div class="title2">(一)保单红利</div>
             <div class="coveragetext">可对分红选择累积生息，享受高速发展的中邮保险的经营成果。</div>
              <div class="title2">(二)豁免保险费</div>
-            　<div class="coveragetext">交费期间内，投保人因遭受意外伤害导致身故或全残，且意外伤害时不满65周岁的，则免交以后各期保险费，本合同继续有效。</div>
+            <div class="coveragetext">交费期间内，投保人因遭受意外伤害导致身故或全残，且意外伤害时不满65周岁的，则免交以后各期保险费，本合同继续有效。</div>
              <div class="title2">(三)保单借款</div>
-            <div class="coveragetext">最高可以借保单现金价值的90%。</div>            
+            <div class="coveragetext">最高可以借保单现金价值的90%。</div>      <br/>    			
             <div class="alert">本计划书仅供参考，详细内容以保险合同条款为准。</div><hr/>
-            <br/><div style="width:12em;float:left;">理财顾问：</div><div style="width:12em;float:left;">服务电话：</div><br/><br/><br/>
+            <br/><div style="width:12em;float:left;">理财经理：</div><div style="width:12em;float:left;">服务电话：</div><br/><br/><br/>
         </div>
-    </div>
-    <div data-role="footer" class="footer">
-    	<div class="footertext">年年好保你好，重疾保障程度高，生存金早早领，复利收益乐陶陶！</div>
-    </div>
+		</div>
+		<div class='prn'> <input type='button' class='prnbtn' value='打印当前页' /></div>
+		<div data-role="footer" class="footer">
+			<div class="footertext">中邮保险销售辅助工具V2.0.5</div>
+		</div>
+	</div>
 </div><!-- end of nianB guarantee -->
+
+<!----- page Fu1info -->
+<div data-role="page" id="fu1guarantee"  class="info">
+	<div data-role="header"  data-theme="c">
+		<h1 aria-level="1" role="heading" class="ui-title">富富余一号</h1>
+		<a title="更新计划" data-theme="f" data-wrapperels="span" data-iconshadow="true" data-shadow="true" data-corners="true" 
+        		class="ui-btn-left ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-btn-up-f" 
+                href="#fu1info" data-icon="back" data-iconpos="notext" data-direction="reverse">
+        	<span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">
+            	&nbsp;</span><span class="ui-icon ui-icon-back ui-icon-shadow">&nbsp;</span></span></a>
+    </div>
+    <div data-role="content">
+        <div><span class="title">产品亮点：</span> 富富余一号<br/>
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 分红生财图个富!<br/><br/>
+        </div>
+        <div><span class="title">基本信息:</span>被保险人年龄<span id="showage_f1" class="parameter"> </span>岁
+    		 <div class="ui-grid-d">
+            	<div class="ui-block-a tablehead">保险名称</div>
+                <div class="ui-block-c tablehead">保险期间</div>
+                <div class="ui-block-d tablehead">所交保费</div>
+                <div class="ui-block-e tablehead">基本保额</div>
+                
+                <div class="ui-block-a table tablecontent">富富余一号两全保险(分红型)</div>
+                <div class="ui-block-c table tablecontent"><span class="parameter">5年 </span></div>
+                <div class="ui-block-d table tablecontent"><span id="mainpremium_f1" class="parameter"> </span></div>
+                <div class="ui-block-e table tablecontent"><span id="maincoverage_f1" class="parameter"> </span></div>             
+			</div>
+			<div>
+        	 <div class="title">一、保险责任：</div>
+			 <div class="title2">(一)满期保险金</div>
+             <div class="coveragetext">保险合同期满，领取满期金<span class="coverage" id="termination_f1"></span>元，本合同效力终止。</div>
+             <div class="title2">(二)身故、全残保险金金</div>
+             <div class="coveragetext">被保险人于合同生效之日起180日后因疾病导致身故或全残，给付"身故、全残保险金" <span class="coverage" id="termination_f1_a"></span>元，合同效力终止。</div>
+             <div class="alert">&nbsp;&nbsp;&nbsp;被保险人于合同生效之日起180日内(含第180日)因疾病身故或全残，无息返还已交的保险费<span class="coverage" id="mainpremium_f1_a"></span>元,本合同效力终止。</div>
+             <div class="title2">(三)意外身故、全残保险金</div>
+             <div class="coveragetext">被保险人于合同生效之日起因意外导致身故或全残，按照基本保额的<span id="showsex" class="parameter">2倍</span>给付"意外身故、全残保险金"<span class="coverage" id="unexpectedgomax_f1"></span>元，本合同效力终止。</div> <br/>
+            <div class="title">二、合同权益</div>
+             <div class="title2">保单红利</div>
+            <div class="coveragetext">可对分红选择累积生息，享受高速发展的中邮保险的经营成果。</div> <br/> 
+			<div class="alert">本计划书仅供参考，详细内容以保险合同条款为准。</div><hr/>
+            <br/><div style="width:12em;float:left;">理财经理：</div><div style="width:12em;float:left;">服务电话：</div><br/><br/>
+			</div>
+		</div>
+		<div class='prn'> <input type='button' class='prnbtn' value='打印当前页' /></div>
+		<div data-role="footer" class="footer">
+			<div class="footertext">中邮保险销售辅助工具V2.0.5</div>
+		</div>
+	</div>
+</div><!-- end of fu1 guarantee -->
+
+<!---fu3 info-->
+<div data-role="page" id="fu3guarantee"  class="info">
+	<div data-role="header"  data-theme="c">
+		<h1 aria-level="1" role="heading" class="ui-title">富富余三号</h1>
+		<a title="更新计划" data-theme="f" data-wrapperels="span" data-iconshadow="true" data-shadow="true" data-corners="true" 
+        		class="ui-btn-left ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-btn-up-f" 
+                href="#fu3info" data-icon="back" data-iconpos="notext" data-direction="reverse">
+        	<span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">
+            	&nbsp;</span><span class="ui-icon ui-icon-back ui-icon-shadow">&nbsp;</span></span></a>
+    </div>
+    <div data-role="content">
+        <div><span class="title">产品亮点：</span> 富富余三号<br/>
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 分红生财图个富!<br/><br/>
+        </div>
+        <div><span class="title">基本信息:</span>被保险人年龄<span id="showage_f3" class="parameter"> </span>岁
+    		 <div class="ui-grid-d">
+            	<div class="ui-block-a tablehead">保险名称</div>
+				<div class="ui-block-b tablehead">交费期间</div>
+                <div class="ui-block-c tablehead">保险期间</div>
+                <div class="ui-block-d tablehead">所交保费</div>
+                <div class="ui-block-e tablehead">基本保额</div>
+                
+                <div class="ui-block-a table tablecontent">富富余三号两全保险(分红型)</div>
+				<div class="ui-block-d table tablecontent"><span id="payperiodmain_f3" class="parameter"> </span></div>
+                <div class="ui-block-c table tablecontent"><span class="parameter">6年 </span></div>
+                <div class="ui-block-d table tablecontent"><span id="mainpremium_f3" class="parameter"> </span></div>
+                <div class="ui-block-e table tablecontent"><span id="coverage_f3" class="parameter"> </span></div>             
+			</div>
+			<div>
+        	 <div class="title">一、保险责任：</div>
+			 <div class="title2">(一)满期保险金</div>
+             <div class="coveragetext">保险合同期满，领取满期金<span class="coverage" id="f_all_coverage_f3"></span>元，本合同效力终止。</div>
+             <div class="title2">(二)身故、全残保险金金</div>
+             <div class="coveragetext">被保险人于合同生效之日起180日后因疾病导致身故或全残，按照基本保额乘以交费年度数给付"身故、全残保险金"，最低给付<span class="coverage" id="unexpectedgomin_f3_a"></span>元，最高给付<span class="coverage" id="unexpectedgomax_f3_a"></span>元，合同效力终止。</div>
+             <div class="alert">&nbsp;&nbsp;&nbsp;被保险人于合同生效之日起180日内(含第180日)因疾病身故或全残，无息返还已交的保险费<span class="coverage" id="mainpremium_f3_a"></span>元,本合同效力终止。</div>
+             <div class="title2">(三)意外身故、全残保险金</div>
+             <div class="coveragetext">被保险人于合同生效之日起因意外导致身故或全残，按照基本保额乘以交费年度数的<span  class="parameter">2倍</span>给付"身故、全残保险金"，最低给付<span class="coverage" id="unexpectedgomin_f3_b"></span>元，最高给付<span class="coverage" id="unexpectedgomax_f3_b"></span>元，本合同效力终止。</div>   
+			 <div class="title2">(四)交通意外身故、全残保险金</div>
+             <div class="coveragetext">被保险人于合同生效之日起搭乘指定公共交通工具（见合同条款）期间遭受意外伤害事故导致身故或全残，按照基本保额乘以交费年度数的<span  class="parameter">3倍</span>给付"交通意外身故、全残保险金"，最低给付<span class="coverage" id="unexpectedgomin_f3_c"></span>元，最高给付<span class="coverage" id="unexpectedgomax_f3_c"></span>元，本合同效力终止。</div> <br/>
+			<div class="title">二、合同权益</div>
+             <div class="title2">保单红利</div>
+            <div class="coveragetext">可对分红选择累积生息，享受高速发展的中邮保险的经营成果。</div><br/>
+			<div class="alert">本计划书仅供参考，详细内容以保险合同条款为准。</div><hr/>
+            <div style="width:12em;float:left;">理财经理：</div><div style="width:12em;float:left;">服务电话：</div> 
+			</div>
+		</div>
+		<div class='prn'> <input type='button' class='prnbtn' value='打印当前页' /></div>
+		<div data-role="footer" class="footer">
+			<div class="footertext">中邮保险销售辅助工具V2.0.5</div>
+		</div>
+	</div>
+</div><!-- end of fu3 guarantee -->
+
+<!--mian2 info  -->
+<div data-role="page" id="mian2guarantee"  class="info">
+	<div data-role="header"  data-theme="c">
+		<h1 aria-level="1" role="heading" class="ui-title">绵绵寿二号</h1>
+		<a title="更新计划" data-theme="f" data-wrapperels="span" data-iconshadow="true" data-shadow="true" data-corners="true" 
+        		class="ui-btn-left ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-btn-up-f" 
+                href="#mian2info" data-icon="back" data-iconpos="notext" data-direction="reverse">
+        	<span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">
+            	&nbsp;</span><span class="ui-icon ui-icon-back ui-icon-shadow">&nbsp;</span></span></a>
+    </div>
+    <div data-role="content">
+        <div><span class="title">产品亮点：</span> 绵绵寿二号<br/>
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 富寿绵长图个福!<br/><br/>
+        </div>
+        <div><span class="title">基本信息:</span>被保险人年龄<span id="showage_m2" class="parameter"> </span>岁
+    		 <div class="ui-grid-d">
+            	<div class="ui-block-a tablehead">保险名称</div>
+				<div class="ui-block-b tablehead">交费期间</div>
+                <div class="ui-block-b tablehead">保险期间</div>
+				<div class="ui-block-c tablehead">所交保费</div>
+                <div class="ui-block-e tablehead">基本保额</div>
+                
+                <div class="ui-block-a table tablecontent">绵绵寿二号年金保险(分红型)</div>
+				<div class="ui-block-d table tablecontent"><span id="payperiodmain_m2" class="parameter"> </span></div>
+				<div class="ui-block-b table tablecontent"><span class="parameter">15年 </span></div>
+                <div class="ui-block-c table tablecontent"><span id="totalpremium_m2" class="parameter"> </span></div>
+                <div class="ui-block-e table tablecontent"><span id="maincoverage_m2" class="parameter"> </span></div>             
+			</div>
+			<div>
+        	 <div class="title">一、保险责任：</div>
+			 <div class="title2">(一)生存年金</div>
+             <div class="coveragetext">保险期内被保险人生存，每年可领取"生存年金"<span class="coverage" id="annuity_m2_a"></span>元。</div>
+			  <div class="title2">(二)满期保险金</div>
+             <div class="coveragetext">保险合同期满，无息返还已交保险费<span class="coverage" id="totalpremium_m2_all"></span>元，本合同效力终止。</div>
+             <div class="title2">(三)身故、全残保险金金</div>
+             <div class="coveragetext">被保险人于合同生效之日起180日后因疾病导致身故或全残，按照基本保额乘以交费年度数给付"身故、全残保险金"，最低给付<span class="coverage" id="unexpectedgomin_m2_a"></span>元，最高给付<span class="coverage" id="unexpectedgomax_m2_a"></span>元，合同效力终止。</div>
+             <div class="title2">(四)意外身故、全残保险金</div>
+             <div class="coveragetext">被保险人于合同生效之日起因意外导致身故或全残，按照基本保额乘以交费年度数的<span  class="parameter">2倍</span>给付"身故、全残保险金"，最低给付<span class="coverage" id="unexpectedgomin_m2_b"></span>元，最高给付<span class="coverage" id="unexpectedgomax_m2_b"></span>元，本合同效力终止。</div>   
+			 <div class="title2">(五)交通意外身故、全残保险金</div>
+             <div class="coveragetext">被保险人于合同生效之日起搭乘指定公共交通工具（见合同条款）期间遭受意外伤害事故导致身故或全残，按照基本保额乘以交费年度数的<span  class="parameter">3倍</span>给付"交通意外身故、全残保险金"，最低给付<span class="coverage" id="unexpectedgomin_m2_c"></span>元，最高给付<span class="coverage" id="unexpectedgomax_m2_c"></span>元，本合同效力终止。</div><br/>  
+			<div class="title">二、合同权益</div>
+             <div class="title2">保单红利</div>
+            <div class="coveragetext">可对分红选择累积生息，享受高速发展的中邮保险的经营成果。</div> <br/> 
+			<div class="alert">本计划书仅供参考，详细内容以保险合同条款为准。</div><hr/>
+             <div style="width:12em;float:left;">理财经理：</div><div style="width:12em;float:left;">服务电话：</div> 
+			</div>
+		</div>
+		<div class='prn'> <input type='button' class='prnbtn' value='打印当前页' /></div>
+		<div data-role="footer" class="footer">
+			<div class="footertext">中邮保险销售辅助工具V2.0.5</div>
+		</div>
+	</div>
+</div><!-- end of fu3 guarantee -->
+
+
+<!----- page nian_a_info -->
+<div data-role="page" id="n_a_guarantee"  class="info">
+	<div data-role="header"  data-theme="c">
+		<h1 aria-level="1" role="heading" class="ui-title">年年好新A款</h1>
+		<a title="更新计划" data-theme="f" data-wrapperels="span" data-iconshadow="true" data-shadow="true" data-corners="true" 
+        		class="ui-btn-left ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-btn-up-f" 
+                href="#nian_a_info" data-icon="back" data-iconpos="notext" data-direction="reverse">
+        	<span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">
+            	&nbsp;</span><span class="ui-icon ui-icon-back ui-icon-shadow">&nbsp;</span></span></a>
+    </div>
+    <div data-role="content">
+        <div><span class="title">产品亮点：</span> 年年好新A款<br/>
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  保本更好 保障更好 保单更好 <br/><br/>
+        </div>
+        <div><span class="title">基本信息:</span>被保险人年龄<span id="showage_n_a" class="parameter"> </span>岁
+    		 <div class="ui-grid-d">
+            	<div class="ui-block-a tablehead">保险名称</div>
+                <div class="ui-block-c tablehead">保险期间</div>
+                <div class="ui-block-d tablehead">所交保费</div>
+                <div class="ui-block-e tablehead">基本保额</div>
+                
+                <div class="ui-block-a table tablecontent">年年好新A款两全保险</div>
+                <div class="ui-block-c table tablecontent"><span class="parameter">5年 </span></div>
+                <div class="ui-block-d table tablecontent"><span id="mainpremium_n_a" class="parameter"> </span></div>
+                <div class="ui-block-e table tablecontent"><span id="maincoverage_n_a" class="parameter"> </span></div>             
+			</div>
+			<span class="title">收益表:</span>
+    		 <div class="ui-grid-d" id="nianaProfitTable">
+            	<div class="ui-block-a tablehead">年限</div>
+                <div class="ui-block-c tablehead">现金价值</div>
+                <div class="ui-block-d tablehead">累积收益</div>
+                <div class="ui-block-e tablehead">年化收益</div>
+                
+                <div class="ui-block-a table_a tablecontent">第一年</div>
+                <div class="ui-block-c table_a tablecontent"><span id="cash_value1" class="parameter"> </span></div>
+                <div class="ui-block-d table_a tablecontent"><span id="total_proceeds1" class="parameter"> </span></div>
+                <div class="ui-block-e table_a tablecontent"><span id="" class="parameter"> </span></div>
+
+				<div class="ui-block-a table_a tablecontent">第二年</div>
+                <div class="ui-block-c table_a tablecontent"><span id="cash_value2" class="parameter">  </span></div>
+                <div class="ui-block-d table_a tablecontent"><span id="total_proceeds2" class="parameter"> </span></div>
+                <div class="ui-block-e table_a tablecontent"><span id="" class="parameter"> </span></div>
+				
+				<div class="ui-block-a table_a tablecontent">第三年</div>
+                <div class="ui-block-c table_a tablecontent"><span id="cash_value3" class="parameter">  </span></div>
+                <div class="ui-block-d table_a tablecontent"><span id="total_proceeds3" class="parameter"> </span></div>
+                <div class="ui-block-e table_a tablecontent"><span id="" class="parameter"> </span></div>
+				
+				<div class="ui-block-a table_a tablecontent">第四年</div>
+                <div class="ui-block-c table_a tablecontent"><span id="cash_value4" class="parameter">  </span></div>
+                <div class="ui-block-d table_a tablecontent"><span id="total_proceeds4" class="parameter"> </span></div>
+                <div class="ui-block-e table_a tablecontent"><span id="" class="parameter"> </span></div>
+				
+				<div class="ui-block-a table_a tablecontent">第五年</div>
+                <div class="ui-block-c table_a tablecontent"><span id="cash_value5" class="parameter">  </span></div>
+                <div class="ui-block-d table_a tablecontent"><span id="total_proceeds5" class="parameter"> </span></div>
+                <div class="ui-block-e table_a tablecontent"><span id="" class="parameter"> </span></div>
+			</div>		
+			<div>
+        	 <div class="title">保险责任：</div>
+			 <div class="title2">(一)满期保险金</div>
+             <div class="coveragetext">保险合同期满，领取满期金<span class="coverage" id="termination_n_a"></span>元，本合同效力终止。</div>
+             <div class="title2">(二)身故、全残保险金</div>
+             <div class="coveragetext">被保险人于合同生效之日起因疾病导致身故或全残，按已交保险费的105%给付"身故、全残保险金" <span class="coverage" id="disease_n_a"></span>元，合同效力终止。</div>
+             <!--<div class="alert">&nbsp;&nbsp;&nbsp;被保险人于合同生效之日起180日内(含第180日)因疾病身故或全残，无息返还已交的保险费<span class="coverage" id=" "></span>元,本合同效力终止。</div>  -->
+             <div class="title2">(三)意外身故、全残保险金</div>
+             <div class="coveragetext">被保险人于合同生效之日起因意外导致身故或全残，按已交保费的<span id="showsex" class="parameter">2倍</span>给付"意外身故、全残保险金"<span class="coverage" id="unexpected_n_a"></span>元，本合同效力终止。</div> <br/>
+            <div class="title">合同权益：</div>
+             <div class="title2">保单借款</div>
+            <div class="coveragetext">最高可以借保单现金价值的90%。</div>      <br/>    		
+			<div class="alert">本计划书仅供参考，详细内容以保险合同条款为准。</div><hr/>
+            <br/><div style="width:12em;float:left;">理财经理：</div><div style="width:12em;float:left;">服务电话：</div><br/><br/><br/>
+			</div>
+		</div>
+		<div class='prn'> <input type='button' class='prnbtn' value='打印当前页' /></div>
+		<div data-role="footer" class="footer">
+			<div class="footertext">中邮保险销售辅助工具V2.0.5</div>
+		</div>
+	</div>
+</div><!-- end of nian_a guarantee -->
+
+
+<!---nian_bbb info-->
+<div data-role="page" id="bbb_guarantee"  class="info">
+	<div data-role="header"  data-theme="c">
+		<h1 aria-level="1" role="heading" class="ui-title">年年好百倍保</h1>
+		<a title="更新计划" data-theme="f" data-wrapperels="span" data-iconshadow="true" data-shadow="true" data-corners="true" 
+        		class="ui-btn-left ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-btn-up-f" 
+                href="#nian_bbb_info" data-icon="back" data-iconpos="notext" data-direction="reverse">
+        	<span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">
+            	&nbsp;</span><span class="ui-icon ui-icon-back ui-icon-shadow">&nbsp;</span></span></a>
+    </div>
+    <div data-role="content">
+        <div><span class="title">产品亮点：</span><span  class="title">1</span>份投入  &nbsp;&nbsp;   <span  class="title">3</span>重保障  &nbsp;&nbsp;   <span  class="title">160</span>倍关爱 
+        </div><br/>
+        <div><span class="title">基本信息:</span>被保险人年龄<span id="showage_bbb" class="parameter"> </span>岁
+    		 <div class="ui-grid-d">
+            	<div class="ui-block-a tablehead">保险名称</div>
+				<div class="ui-block-b tablehead">交费期间</div>
+                <div class="ui-block-c tablehead">保险期间</div>
+				<div class="ui-block-c tablehead">保险组合</div>
+               
+                <div class="ui-block-a table tablecontent">年年好百倍保</div>
+				<div class="ui-block-d table tablecontent"><span id="payperiodmain_bbb" class="parameter"> </span></div>
+                <div class="ui-block-c table tablecontent"><span id="duration_bbb" class="parameter"> </span></div>
+				<div class="ui-block-c table tablecontent"><span id="group_bbb" class="parameter"> </span></div>
+           
+			</div>
+			<div>
+        	 <div class="title">保险责任：</div>
+			 <span  class="echo_bbb_a">
+			 <div class="title2">(一)自驾车交通意外身故、全残保险金</div>
+             <div class="coveragetext">被保险人于合同生效之日起因驾驶或乘坐自驾车（见合同条款）期间遭受意外伤害事故导致身故或全残，按照已交保费的<span  class="parameter" id="unexpected_multiple_car"></span>给付"自驾车交通意外身故、全残保险金"，最低给付<span class="coverage" id="unexpected_car_bbb"></span>元，最高给付<span class="coverage" id="unexpected_car_bbb_max"></span>元，本合同效力终止。</div>
+			 <div class="alert_bbb">&nbsp;&nbsp;&nbsp;若被保险人发生身故或全残未满18 周岁的，按已交保险费的105%给付“自驾车意外身故、全残保险金”,最低给付<span class="coverage" id="age_bbb_min1"></span>元，最高给付<span class="coverage" id="age_bbb_max1"></span>元,本合同效力终止。</div> 
+			 <div class="title2">(二)航空交通意外身故、全残保险金</div>
+             <div class="coveragetext">被保险人于合同生效之日起搭乘指定公共交通工具（见合同条款）期间遭受意外伤害事故导致身故或全残，按照已交保费的<span  class="parameter" id="unexpected_multiple_air"></span>给付"航空交通意外身故、全残保险金"，最低给付<span class="coverage" id="unexpected_air_bbb"></span>元，最高给付<span class="coverage" id="unexpected_air_bbb_max"></span>元，本合同效力终止。</div> 
+			 <div class="alert_bbb">&nbsp;&nbsp;&nbsp;若被保险人发生身故或全残未满18 周岁的，按已交保险费的105%给付“航空交通意外身故、全残保险金”,最低给付<span class="coverage" id="age_bbb_min2"></span>元，最高给付<span class="coverage" id="age_bbb_max2"></span>元,本合同效力终止。</div>
+			 <div class="title2">(三)意外身故、全残保险金</div>
+             <div class="coveragetext">被保险人于合同生效之日起因意外导致身故或全残，按照已交保费的<span  class="parameter">16倍</span>给付"意外身故、全残保险金"，最低给付<span class="coverage" id="unexpected_bbb"></span>元，最高给付<span class="coverage" id="unexpected_bbb_max"></span>元，本合同效力终止。</div>   
+			 <div class="alert_bbb">&nbsp;&nbsp;&nbsp;若被保险人发生身故或全残未满18 周岁的，按已交保险费的105%给付“意外身故、全残保险金”,最低给付<span class="coverage" id="age_bbb_min3"></span>元，最高给付<span class="coverage" id="age_bbb_max3"></span>元,本合同效力终止。</div>
+			 <div class="title2">(四)身故、全残保险金金</div>
+             <div class="coveragetext">被保险人于合同生效之日起因非意外导致身故或全残，按已交保费的105%给付"身故、全残保险金"，最低给付<span class="coverage" id="disease_bbb"></span>元，最高给付<span class="coverage" id="disease_bbb_max"></span>元，合同效力终止。</div>
+             <div class="title2">(五)满期保险金</div>
+             <div class="coveragetext">保险合同期满，领取满期金<span class="coverage" id="f_all_coverage_bbb"></span>元，本合同效力终止。</div> <br/>
+			 </span>
+			 <span  class="echo_bbb_a_below">
+			 <div class="title2">(一)自驾车交通意外身故、全残保险金</div>
+             <div class="coveragetext">若被保险人发生身故或全残未满18 周岁的，按已交保险费的105%给付“自驾车意外身故、全残保险金”,最低给付<span class="coverage" id="age_bbb_min1_below"></span>元，最高给付<span class="coverage" id="age_bbb_max1_below"></span>元,本合同效力终止。</div>
+			 <div class="title2">(二)航空交通意外身故、全残保险金</div>
+             <div class="coveragetext">若被保险人发生身故或全残未满18 周岁的，按已交保险费的105%给付“航空交通意外身故、全残保险金”,最低给付<span class="coverage" id="age_bbb_min2_below"></span>元，最高给付<span class="coverage" id="age_bbb_max2_below"></span>元,本合同效力终止。</div> 
+			 <div class="title2">(三)意外身故、全残保险金</div>
+             <div class="coveragetext">若被保险人发生身故或全残未满18 周岁的，按已交保险费的105%给付“意外身故、全残保险金”,最低给付<span class="coverage" id="age_bbb_min3_below"></span>元，最高给付<span class="coverage" id="age_bbb_max3_below"></span>元,本合同效力终止。</div>   
+			 <div class="title2">(四)身故、全残保险金金</div>
+             <div class="coveragetext">被保险人于合同生效之日起因非意外导致身故或全残，按已交保费的105%给付"身故、全残保险金"，最低给付<span class="coverage" id="disease_bbb_below_below"></span>元，最高给付<span class="coverage" id="disease_bbb_max_below"></span>元，合同效力终止。</div>
+             <div class="title2">(五)满期保险金</div>
+             <div class="coveragetext">保险合同期满，领取满期金<span class="coverage" id="f_all_coverage_bbb_below"></span>元，本合同效力终止。</div> <br/>
+			 </span>
+			 <span  class="echo_bbb_b">
+			 <div class="title2">(一)公共交通意外身故、全残保险金</div>
+             <div class="coveragetext">被保险人于合同生效之日起搭乘指定公共交通工具（见合同条款）期间遭受意外伤害事故导致身故或全残，按照已交保费的<span  class="parameter" id="unexpected_multiple_bus"></span>给付"公共交通意外身故、全残保险金"，最低给付<span class="coverage" id="unexpected_bus_bbb"></span>元，最高给付<span class="coverage" id="unexpected_bus_bbb_max"></span>元，本合同效力终止。</div> 
+			 <div class="alert_bbb">&nbsp;&nbsp;&nbsp;若被保险人发生身故或全残未满18 周岁的，按已交保险费的105%给付“公共交通意外身故、全残保险金”,最低给付<span class="coverage" id="age_bbb_min4"></span>元，最高给付<span class="coverage" id="age_bbb_max4"></span>元,本合同效力终止。</div>
+			 <div class="title2">(二)意外身故、全残保险金</div>
+             <div class="coveragetext">被保险人于合同生效之日起因意外导致身故或全残，按照已交保费的<span  class="parameter">16倍</span>给付"意外身故、全残保险金"，最低给付<span class="coverage" id="unexpected_bbb_b"></span>元，最高给付<span class="coverage" id="unexpected_bbb_max_b"></span>元，本合同效力终止。</div> 
+			 <div class="alert_bbb">&nbsp;&nbsp;&nbsp;若被保险人发生身故或全残未满18 周岁的，按已交保险费的105%给付“意外身故、全残保险金”,最低给付<span class="coverage" id="age_bbb_min5"></span>元，最高给付<span class="coverage" id="age_bbb_max5"></span>元,本合同效力终止。</div>			 
+			 <div class="title2">(三)身故、全残保险金金</div>
+             <div class="coveragetext">被保险人于合同生效之日起因非意外导致身故或全残，按已交保费的105%给付"身故、全残保险金"，最低给付<span class="coverage" id="disease_bbb_b"></span>元，最高给付<span class="coverage" id="disease_bbb_max_b"></span>元，合同效力终止。</div>
+             <div class="title2">(四)满期保险金</div>
+             <div class="coveragetext">保险合同期满，领取满期金<span class="coverage" id="f_all_coverage_bbb_b"></span>元，本合同效力终止。</div> <br/>
+			 </span>
+			 <span  class="echo_bbb_b_below">
+			 <div class="title2">(一)公共交通意外身故、全残保险金</div>
+             <div class="coveragetext">若被保险人发生身故或全残未满18 周岁的，按已交保险费的105%给付“公共交通意外身故、全残保险金”,最低给付<span class="coverage" id="age_bbb_min4_below"></span>元，最高给付<span class="coverage" id="age_bbb_max4_below"></span>元,本合同效力终止。</div> 
+			 <div class="title2">(二)意外身故、全残保险金</div>
+             <div class="coveragetext">若被保险人发生身故或全残未满18 周岁的，按已交保险费的105%给付“意外身故、全残保险金”,最低给付<span class="coverage" id="age_bbb_min5_below"></span>元，最高给付<span class="coverage" id="age_bbb_max5_below"></span>元,本合同效力终止。</div> 
+			  <div class="title2">(三)身故、全残保险金金</div>
+             <div class="coveragetext">被保险人于合同生效之日起因非意外导致身故或全残，按已交保费的105%给付"身故、全残保险金"，最低给付<span class="coverage" id="disease_bbb_b_below"></span>元，最高给付<span class="coverage" id="disease_bbb_max_b_below"></span>元，合同效力终止。</div>
+             <div class="title2">(四)满期保险金</div>
+             <div class="coveragetext">保险合同期满，领取满期金<span class="coverage" id="f_all_coverage_bbb_b_below"></span>元，本合同效力终止。</div> <br/>
+			 </span>
+			 <!---趸交不要最低最高--->
+			 <span  class="echo_bbb_a_dun">
+			 <div class="title2">(一)自驾车交通意外身故、全残保险金</div>
+             <div class="coveragetext">被保险人于合同生效之日起因驾驶或乘坐自驾车（见合同条款）期间遭受意外伤害事故导致身故或全残，按照已交保费的<span  class="parameter" id="unexpected_multiple_car_dun"></span>给付"自驾车交通意外身故、全残保险金"<span class="coverage" id="unexpected_car_bbb_max_dun"></span>元，本合同效力终止。</div>
+			 <div class="alert_bbb">&nbsp;&nbsp;&nbsp;若被保险人发生身故或全残未满18 周岁的，按已交保险费的105%给付“自驾车意外身故、全残保险金”<span class="coverage" id="age_bbb_max1_dun"></span>元,本合同效力终止。</div> 
+			 <div class="title2">(二)航空交通意外身故、全残保险金</div>
+             <div class="coveragetext">被保险人于合同生效之日起搭乘指定公共交通工具（见合同条款）期间遭受意外伤害事故导致身故或全残，按照已交保费的<span  class="parameter" id="unexpected_multiple_air_dun"></span>给付"航空交通意外身故、全残保险金"<span class="coverage" id="unexpected_air_bbb_max_dun"></span>元，本合同效力终止。</div> 
+			 <div class="alert_bbb">&nbsp;&nbsp;&nbsp;若被保险人发生身故或全残未满18 周岁的，按已交保险费的105%给付“航空交通意外身故、全残保险金”<span class="coverage" id="age_bbb_max2_dun"></span>元,本合同效力终止。</div>
+			 <div class="title2">(三)意外身故、全残保险金</div>
+             <div class="coveragetext">被保险人于合同生效之日起因意外导致身故或全残，按照已交保费的<span  class="parameter">16倍</span>给付"意外身故、全残保险金"<span class="coverage" id="unexpected_bbb_max_dun"></span>元，本合同效力终止。</div>   
+			 <div class="alert_bbb">&nbsp;&nbsp;&nbsp;若被保险人发生身故或全残未满18 周岁的，按已交保险费的105%给付“意外身故、全残保险金”<span class="coverage" id="age_bbb_max3_dun"></span>元,本合同效力终止。</div>
+			 <div class="title2">(四)身故、全残保险金金</div>
+             <div class="coveragetext">被保险人于合同生效之日起因非意外导致身故或全残，按已交保费的105%给付"身故、全残保险金"<span class="coverage" id="disease_bbb_max_dun"></span>元，合同效力终止。</div>
+             <div class="title2">(五)满期保险金</div>
+             <div class="coveragetext">保险合同期满，领取满期金<span class="coverage" id="f_all_coverage_bbb_dun"></span>元，本合同效力终止。</div> <br/>
+			 </span>
+			 <span  class="echo_bbb_a_below_dun">
+			 <div class="title2">(一)自驾车交通意外身故、全残保险金</div>
+             <div class="coveragetext">若被保险人发生身故或全残未满18 周岁的，按已交保险费的105%给付“自驾车意外身故、全残保险金”<span class="coverage" id="age_bbb_max1_below_dun"></span>元,本合同效力终止。</div>
+			 <div class="title2">(二)航空交通意外身故、全残保险金</div>
+             <div class="coveragetext">若被保险人发生身故或全残未满18 周岁的，按已交保险费的105%给付“航空交通意外身故、全残保险金”<span class="coverage" id="age_bbb_max2_below_dun"></span>元,本合同效力终止。</div> 
+			 <div class="title2">(三)意外身故、全残保险金</div>
+             <div class="coveragetext">若被保险人发生身故或全残未满18 周岁的，按已交保险费的105%给付“意外身故、全残保险金”<span class="coverage" id="age_bbb_max3_below_dun"></span>元,本合同效力终止。</div>   
+			 <div class="title2">(四)身故、全残保险金金</div>
+             <div class="coveragetext">被保险人于合同生效之日起因非意外导致身故或全残，按已交保费的105%给付"身故、全残保险金"<span class="coverage" id="disease_bbb_max_below_dun"></span>元，合同效力终止。</div>
+             <div class="title2">(五)满期保险金</div>
+             <div class="coveragetext">保险合同期满，领取满期金<span class="coverage" id="f_all_coverage_bbb_below_dun"></span>元，本合同效力终止。</div> <br/>
+			 </span>
+			 <span  class="echo_bbb_b_dun">
+			 <div class="title2">(一)公共交通意外身故、全残保险金</div>
+             <div class="coveragetext">被保险人于合同生效之日起搭乘指定公共交通工具（见合同条款）期间遭受意外伤害事故导致身故或全残，按照已交保费的<span  class="parameter" id="unexpected_multiple_bus_dun"></span>给付"公共交通意外身故、全残保险金"<span class="coverage" id="unexpected_bus_bbb_max_dun"></span>元，本合同效力终止。</div> 
+			 <div class="alert_bbb">&nbsp;&nbsp;&nbsp;若被保险人发生身故或全残未满18 周岁的，按已交保险费的105%给付“公共交通意外身故、全残保险金”<span class="coverage" id="age_bbb_max4_dun"></span>元,本合同效力终止。</div>
+			 <div class="title2">(二)意外身故、全残保险金</div>
+             <div class="coveragetext">被保险人于合同生效之日起因意外导致身故或全残，按已交保费的<span  class="parameter">16倍</span>给付"意外身故、全残保险金"<span class="coverage" id="unexpected_bbb_max_b_dun"></span>元，本合同效力终止。</div> 
+			 <div class="alert_bbb">&nbsp;&nbsp;&nbsp;若被保险人发生身故或全残未满18 周岁的，按已交保险费的105%给付“意外身故、全残保险金”<span class="coverage" id="age_bbb_max5_dun"></span>元,本合同效力终止。</div>			 
+			 <div class="title2">(三)身故、全残保险金金</div>
+             <div class="coveragetext">被保险人于合同生效之日起因非意外导致身故或全残，按已交保费的105%给付"身故、全残保险金"<span class="coverage" id="disease_bbb_max_b_dun"></span>元，合同效力终止。</div>
+             <div class="title2">(四)满期保险金</div>
+             <div class="coveragetext">保险合同期满，领取满期金<span class="coverage" id="f_all_coverage_bbb_b_dun"></span>元，本合同效力终止。</div> <br/>
+			 </span>
+			 <span  class="echo_bbb_b_below_dun">
+			 <div class="title2">(一)公共交通意外身故、全残保险金</div>
+             <div class="coveragetext">若被保险人发生身故或全残未满18 周岁的，按已交保险费的105%给付“公共交通意外身故、全残保险金”<span class="coverage" id="age_bbb_max4_below_dun"></span>元,本合同效力终止。</div> 
+			 <div class="title2">(二)意外身故、全残保险金</div>
+             <div class="coveragetext">若被保险人发生身故或全残未满18 周岁的，按已交保险费的105%给付“意外身故、全残保险金”<span class="coverage" id="age_bbb_max5_below_dun"></span>元,本合同效力终止。</div> 
+			  <div class="title2">(三)身故、全残保险金金</div>
+             <div class="coveragetext">被保险人于合同生效之日起因非意外导致身故或全残，按已交保费的105%给付"身故、全残保险金"<span class="coverage" id="disease_bbb_max_b_below_dun"></span>元，合同效力终止。</div>
+             <div class="title2">(四)满期保险金</div>
+             <div class="coveragetext">保险合同期满，领取满期金<span class="coverage" id="f_all_coverage_bbb_b_below_dun"></span>元，本合同效力终止。</div> <br/>
+			 </span>
+			 <!---趸交不要最低最高end-->
+			 <div class="title">合同权益：</div>
+             <div class="title2">保单借款</div>
+            <div class="coveragetext">最高可以借保单现金价值的90%。</div>      <br/>    			
+			 <div class="alert">本计划书仅供参考，详细内容以保险合同条款为准。</div><hr/>
+            <br/><div style="width:12em;float:left;">理财经理：</div><div style="width:12em;float:left;">服务电话：</div><br/><br/>
+			</div>
+		</div>
+		<div class='prn'> <input type='button' class='prnbtn' value='打印当前页' /></div>
+		<div data-role="footer" class="footer">
+			<div class="footertext">中邮保险销售辅助工具V2.0.5</div>
+		</div>	
+	</div>
+</div><!-- end of nian_bbb guarantee -->
+
+
 </body>
 </html>

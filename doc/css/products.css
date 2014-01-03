@@ -19,11 +19,12 @@
 	width:100%;
 }
 .footer{ 
-	position:fixed;
+	/*position:fixed;*/
+	position:absolute;
   	bottom:0;
 	width:100%;
 	text-align:center;	
-	height:1.2em;
+	height:1.8em;
 }
 .footertext{
 	line-height:1.2em;
@@ -48,6 +49,21 @@
 #age{
 	font-size:1.4em;
 }
+#age_f1{
+	font-size:1.4em;
+}
+#age_f3{
+	font-size:1.4em;
+}
+#age_m2{
+	font-size:1.4em;
+}
+#age_n_a{
+	font-size:1.4em;
+}
+#age_bbb{
+	font-size:1.4em;
+}
 .customertext{
 	font-size:1.2em;
 
@@ -69,6 +85,45 @@
 	color:red;
 	display:none;
 }
+.premiumalert_1{
+	font:"黑体";
+	font-size:14px;
+	color:red;
+	display:none;
+}
+.premiumalert{
+	font:"黑体";
+	font-size:14px;
+	color:red;
+	display:none;
+}
+.premiumalert{
+	font:"黑体";
+	font-size:14px;
+	color:red;
+	display:none;
+}
+.echo_bbb_a{
+	display:none;
+}
+.echo_bbb_a_below{
+	display:none;
+}
+.echo_bbb_b_below{
+	display:none;
+}
+.echo_bbb_b_dun{
+	display:none;
+}
+.echo_bbb_a_dun{
+	display:none;
+}
+.echo_bbb_a_below_dun{
+	display:none;
+}
+.echo_bbb_b_below_dun{
+	display:none;
+}
 #oneblankdiv{
 	height:4em;
 }
@@ -76,6 +131,31 @@
 	width:100%;
 }
 #getguarantee{
+	width:5em;
+	font-size:3em;
+	margin:auto;
+}
+#getguarantee_fu{
+	width:5em;
+	font-size:3em;
+	margin:auto;
+}
+#getguarantee_fu3{
+	width:5em;
+	font-size:3em;
+	margin:auto;
+}
+#getguarantee_mian2{
+	width:5em;
+	font-size:3em;
+	margin:auto;
+}
+#getguarantee_n_a{
+	width:5em;
+	font-size:3em;
+	margin:auto;
+}
+#getguarantee_bbb{
 	width:5em;
 	font-size:3em;
 	margin:auto;
@@ -88,7 +168,7 @@
 }
 .title2{
 	font-weight:bold;
-	padding-top:1em;
+	padding-top:0.5em;
 }
 .coveragetext{
 	text-indent:2em;
@@ -98,6 +178,10 @@
 	color:red;
 }
 .alert{
+	color:red;
+	text-indent:1em;
+}
+.alert_bbb{
 	color:red;
 	text-indent:1em;
 }
@@ -125,6 +209,15 @@
 	text-align:center;
 	font-size:0.8em;
 }
+.table_a{
+	border-style: solid; 
+	border-width: 0.1em;
+	border-color:#000066;
+	height:2.2em;
+	/* line-height:2.0em; */
+	text-align:center;
+	font-size:0.8em;
+}
 .tablecontent{
 	padding-top:0.5em;
 }
@@ -140,5 +233,10 @@
 .parameter{
 	color::#003300;
 	font-weight:bold;
+}
+.prn{
+	width:3em;
+	font-size:3em;
+	margin:auto;
 }
 
